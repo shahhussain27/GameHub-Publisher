@@ -5,14 +5,17 @@ import { BsUpload } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
 
-const FileInput = ({ labelText, w, h }: any) => {
+const FileInput = ({ labelText, w, h, onChange }: any) => {
   const [file, setFile] = useState<any>(null);
   const [preview, setPreview] = useState<string | null>(null);
 
-  const handleFileChange = (event: any) => {
-    const uploadedFile = event.target.files[0];
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const uploadedFile = e.target.files?.[0];
     if (uploadedFile) {
       setFile(uploadedFile);
+      if (onChange) {
+        onChange(e);
+      }
       const fileURL = URL.createObjectURL(uploadedFile);
       setPreview(fileURL);
     }

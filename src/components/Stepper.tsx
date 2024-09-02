@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 
 const Stepper = ({ steps }: { steps: React.ReactNode[] }) => {
+  //{ steps, form }: {steps: React.ReactNode[], form: React.ReactNode[]}
   const [currentStep, setCurrentStep] = useState(0);
 
   const goNext = () => {
@@ -16,6 +17,8 @@ const Stepper = ({ steps }: { steps: React.ReactNode[] }) => {
       setCurrentStep(currentStep - 1);
     }
   };
+
+  // console.log(steps)
 
   return (
     <div className="">

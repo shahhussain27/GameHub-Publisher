@@ -1,12 +1,16 @@
 "use client";
 import React, { useState } from "react";
 
-const SelectInput = ({ labelText, options, defaultOption }: any) => {
+const SelectInput = ({ labelText, options, defaultOption, onChange }: any) => {
   const [selectedOption, setSelectedOption] = useState<string>("");
   const [isOptionSelected, setIsOptionSelected] = useState<boolean>(false);
 
-  const changeTextColor = () => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedOption(e.target.value);
     setIsOptionSelected(true);
+    if (onChange) {
+      onChange(e);
+    }
   };
   return (
     <div>
@@ -19,10 +23,7 @@ const SelectInput = ({ labelText, options, defaultOption }: any) => {
       <div className="relative rounded-[7px] bg-white dark:bg-dark-2">
         <select
           value={selectedOption}
-          onChange={(e) => {
-            setSelectedOption(e.target.value);
-            changeTextColor();
-          }}
+          onChange={handleChange}
           className={`relative  w-full appearance-none rounded-[7px] border border-stroke bg-transparent px-5.5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-dark-3 dark:bg-dark-2 ${
             isOptionSelected ? "text-dark dark:text-white" : ""
           }`}

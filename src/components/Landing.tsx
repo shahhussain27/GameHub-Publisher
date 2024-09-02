@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Landing = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-[#020D1A] text-white">
+    <div className="flex flex-col min-h-screen bg-transparent text-white">
       <div className="flex-1 flex flex-col lg:flex-row items-center justify-center p-8 gap-12">
         <div className="w-full max-w-md lg:w-1/2">
           <svg viewBox="0 0 200 200" className="w-full h-auto">

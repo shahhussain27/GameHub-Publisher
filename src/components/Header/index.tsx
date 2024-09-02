@@ -11,7 +11,8 @@ const Header = (props: {
   setSidebarOpen: (arg0: boolean) => void;
 }) => {
   return (
-    <header className="sticky top-0 z-999 flex w-full bg-white dark:bg-[#020D1A] ">
+    // dark:bg-[#020D1A]
+    <header className="sticky top-0 z-999 flex w-full dark:bg-[#020D1A] ">
       <div className="flex flex-grow items-center justify-between px-4 py-2.5 shadow-2 dark:shadow-1 md:px-5 2xl:px-10">
         <div className="flex items-center gap-2 sm:gap-4 ">
           {/* <!-- Hamburger Toggle BTN --> */}
@@ -83,7 +84,9 @@ const Header = (props: {
               <li className="font-bold text-2xl text-black dark:text-white cursor-pointer">
                 Dev
               </li>
-              <Link href={"/dashboard"} className="cursor-pointer">Support</Link>
+              <Link href={"/dashboard"} className="cursor-pointer">
+                Support
+              </Link>
               <li className="cursor-pointer">Documentation</li>
             </ul>
           </nav>
