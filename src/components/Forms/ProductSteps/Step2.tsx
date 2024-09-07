@@ -3,14 +3,16 @@ import FileInput from "@/components/Atoms/Inputs/FileInput";
 import Textarea from "@/components/Atoms/Inputs/Textarea";
 import React, { useState } from "react";
 
-const Step2 = () => {
-  const [poster, setPoster] = useState<File | null>(null);
-  const [title, setTitle] = useState("");
+interface Step2Props {
+  onPosterChange: (file: File | null) => void;
+  onTitleChange: (value: string) => void;
+}
 
+const Step2: React.FC<Step2Props> = ({ onPosterChange, onTitleChange }) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = e.target.files?.[0];
     if (uploadedFile) {
-      setPoster(uploadedFile);
+      onPosterChange(uploadedFile);
     }
   };
 
@@ -31,7 +33,7 @@ const Step2 = () => {
             labelText={"Title"}
             defaultText=""
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-              setTitle(e.target.value)
+              onTitleChange(e.target.value)
             }
           />
         </div>

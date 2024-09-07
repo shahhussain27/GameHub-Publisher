@@ -6,14 +6,19 @@ import "@/css/style.css";
 import React, { useEffect, useState } from "react";
 import Loader from "@/components/common/Loader";
 import Header from "@/components/Header";
+import { SessionProvider} from "next-auth/react";
 
 export default function RootLayout({
   children,
+  session,
 }: Readonly<{
   children: React.ReactNode;
+  session: any;
 }>) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
+
+
 
   // const pathname = usePathname();
 
@@ -24,10 +29,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        {!loading && (
-          <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        )}
-        {loading ? <Loader /> : children}
+        <SessionProvider session={session}>
+          {!loading && (
+            <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+          )}
+          {loading ? <Loader /> : children}
+        </SessionProvider>
       </body>
     </html>
   );

@@ -4,19 +4,29 @@ import SelectInput from "@/components/Atoms/Inputs/SelectInput";
 import TextInput from "@/components/Atoms/Inputs/TextInput";
 import React, { useState } from "react";
 
-const Step1 = () => {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [publisher, setPublisher] = useState("");
-  const [developer, setDeveloper] = useState("");
-  const [platform, setPlatform] = useState("");
-  const [engine, setEngine] = useState("");
-  const [logo, setLogo] = useState<File | null>(null);
+interface Step1Props {
+  onNameChange: (value: string) => void;
+  onPriceChange: (value: string) => void;
+  onPublisherChange: (value: string) => void;
+  onDeveloperChange: (value: string) => void;
+  onPlatformChange: (value: string) => void;
+  onEngineChange: (value: string) => void;
+  onLogoChange: (file: File | null) => void;
+}
 
+const Step1: React.FC<Step1Props> = ({
+  onNameChange,
+  onPriceChange,
+  onPublisherChange,
+  onDeveloperChange,
+  onPlatformChange,
+  onEngineChange,
+  onLogoChange,
+}) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = e.target.files?.[0];
     if (uploadedFile) {
-      setLogo(uploadedFile);
+      onLogoChange(uploadedFile);
     }
   };
 
@@ -38,7 +48,7 @@ const Step1 = () => {
             placeholderText="Product name"
             defaultText=""
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setName(e.target.value)
+              onNameChange(e.target.value)
             }
           />
 
@@ -47,7 +57,7 @@ const Step1 = () => {
             placeholderText="Product price"
             defaultText=""
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setPrice(e.target.value)
+              onPriceChange(e.target.value)
             }
           />
           <TextInput
@@ -55,7 +65,7 @@ const Step1 = () => {
             placeholderText="Publisher"
             defaultText="GamerHub"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setPublisher(e.target.value)
+              onPublisherChange(e.target.value)
             }
           />
           <TextInput
@@ -63,21 +73,21 @@ const Step1 = () => {
             placeholderText="Developer"
             defaultText="GameHub"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setDeveloper(e.target.value)
+              onDeveloperChange(e.target.value)
             }
           />
           <SelectInput
             labelText="Platform"
             options={["Windows", "Android", "IOS"]}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-              setPlatform(e.target.value)
+              onPlatformChange(e.target.value)
             }
           />
           <SelectInput
             labelText="Game Engine"
             options={["Unity", "UnReal", "Panda3D"]}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-              setEngine(e.target.value)
+              onEngineChange(e.target.value)
             }
           />
         </div>

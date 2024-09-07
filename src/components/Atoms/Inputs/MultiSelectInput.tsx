@@ -3,12 +3,16 @@ import React, { useState } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
-const MultiSelectInput = ({ placeholder, options }: any) => {
+const MultiSelectInput = ({ placeholder, options, onChange }: any) => {
   const animatedComponents = makeAnimated();
-  const [selectedOptions, setSelectedOptions] = useState([]);
-
+  const [selectedOptions, setSelectedOptions] = useState<any[]>([]);
+  
   const handleChange = (selected: any) => {
     setSelectedOptions(selected);
+
+    if (onChange) {
+      onChange(selected);
+    }
   };
 
   const customStyles = {

@@ -5,11 +5,15 @@ import DropdownUser from "./DropdownUser";
 import Image from "next/image";
 import logoW from "../../../public/assets/gamehubW.png";
 import logoB from "../../../public/assets/gamehubB.png";
+import { useSession } from "next-auth/react";
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
   setSidebarOpen: (arg0: boolean) => void;
 }) => {
+  const { data: session } = useSession();
+  // console.log({ session });
+
   return (
     // dark:bg-[#020D1A]
     <header className="sticky top-0 z-999 flex w-full dark:bg-[#020D1A] ">
@@ -97,7 +101,15 @@ const Header = (props: {
             <DarkModeSwitcher />
           </ul>
 
-          <DropdownUser />
+          {session ? (
+            <DropdownUser />
+          ) : (
+            <Link href={"/auth/signin"}>
+              <button className="bg-white text-[#0E0E1E] hover:bg-gray-200 font-bold text-sm py-1.5 px-4 rounded">
+                LOG IN
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </header>

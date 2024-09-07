@@ -1,37 +1,36 @@
-"use client";
-import Link from "next/link";
+"use client"
 import React from "react";
 import SigninButtons from "../SigninButtons";
-import SigninWithPassword from "../SigninWithPassword";
+import Link from "next/link";
+import SignupWithPassword from "../SignupWithPassword";
 
-export default function Signin() {
+const Signup = () => {
   return (
     <>
+      {" "}
       <div className="flex flex-wrap gap-4 justify-center">
         <SigninButtons />
       </div>
-      {/* google*,github*,xboxX,steamX, twitch* */}
-
       <div className="my-6 flex items-center justify-center">
         <span className="block h-px w-full bg-stroke dark:bg-dark-3/40"></span>
-        <div className="block w-full min-w-fit bg-white px-3 text-center font-medium rounded-xl dark:bg-gray-dark/40">
-          Or sign in with email
+        <div className="block w-full min-w-fit rounded-xl bg-white px-3 text-center font-medium dark:bg-gray-dark/40">
+          Or sign up with email
         </div>
         <span className="block h-px w-full bg-stroke dark:bg-dark-3/40"></span>
       </div>
-
       <div>
-        <SigninWithPassword />
+        <SignupWithPassword />
       </div>
-
       <div className="mt-6 text-center">
         <p>
-          Don’t have any account?{" "}
-          <Link href="/auth/signup" className="text-primary">
-            Sign Up
+          Already have an account?{" "}
+          <Link href="/auth/signin" className="text-primary">
+            Sign In
           </Link>
         </p>
       </div>
     </>
   );
-}
+};
+
+export default Signup;

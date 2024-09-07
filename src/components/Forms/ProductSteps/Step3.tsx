@@ -1,9 +1,43 @@
+"use client";
 import MultiSelectInput from "@/components/Atoms/Inputs/MultiSelectInput";
 import SelectInput from "@/components/Atoms/Inputs/SelectInput";
 import TextInput from "@/components/Atoms/Inputs/TextInput";
-import React from "react";
+import React, { useState } from "react";
+interface Step3Props {
+  onMinOSChange: (value: any) => void;
+  onRecOSChange: (value: any) => void;
+  onMinCPUChange: (value: any) => void;
+  onRecCPUChange: (value: any) => void;
+  onMinRAMChange: (value: string) => void;
+  onRecRAMChange: (value: string) => void;
+  onMinStorageChange: (value: string) => void;
+  onRecStorageChange: (value: string) => void;
+  onMinGPUChange: (value: any) => void;
+  onRecGPUChange: (value: any) => void;
+  onMinSoundCardChange: (value: string) => void;
+  onRecSoundCardChange: (value: string) => void;
+  onNotesChange: (value: string) => void;
+  onAccountsChange: (value: any) => void;
+  onLanguageChange: (value: any) => void;
+}
 
-const Step3 = () => {
+const Step3: React.FC<Step3Props> = ({
+  onMinOSChange,
+  onRecOSChange,
+  onMinCPUChange,
+  onRecCPUChange,
+  onMinRAMChange,
+  onRecRAMChange,
+  onMinStorageChange,
+  onRecStorageChange,
+  onMinGPUChange,
+  onRecGPUChange,
+  onMinSoundCardChange,
+  onRecSoundCardChange,
+  onNotesChange,
+  onAccountsChange,
+  onLanguageChange,
+}) => {
   return (
     <section className="">
       <div>
@@ -37,6 +71,7 @@ const Step3 = () => {
                       { value: "win10-64", label: "Windows 10 64-bit" },
                       { value: "wind10-32", label: "Windows 10 32-bit" },
                     ]}
+                    onChange={(selected: any) => onMinOSChange(selected)}
                   />{" "}
                 </td>
                 <td className="px-4 py-3">
@@ -48,6 +83,7 @@ const Step3 = () => {
                       { value: "win10-64", label: "Windows 10 64-bit" },
                       { value: "wind10-32", label: "Windows 10 32-bit" },
                     ]}
+                    onChange={(selected: any) => onRecOSChange(selected)}
                   />
                 </td>
               </tr>
@@ -78,6 +114,7 @@ const Step3 = () => {
                         label: "or better",
                       },
                     ]}
+                    onChange={(selected: any) => onMinCPUChange(selected)}
                   />
                 </td>
                 <td className="px-4 py-3">
@@ -106,6 +143,7 @@ const Step3 = () => {
                         label: "or better",
                       },
                     ]}
+                    onChange={(selected: any) => onRecCPUChange(selected)}
                   />
                 </td>
               </tr>
@@ -116,12 +154,18 @@ const Step3 = () => {
                   <SelectInput
                     labelText={null}
                     options={["2 GB", "4 GB", "8 GB", "12 GB"]}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      onMinRAMChange(e.target.value)
+                    }
                   />
                 </td>
                 <td className="px-4 py-3">
                   <SelectInput
                     labelText={null}
                     options={["2 GB", "4 GB", "8 GB", "12 GB"]}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      onRecRAMChange(e.target.value)
+                    }
                   />
                 </td>
               </tr>
@@ -131,12 +175,18 @@ const Step3 = () => {
                   <SelectInput
                     labelText={null}
                     options={["212 GB", "512 GB", "812 GB", "1 TB"]}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      onMinStorageChange(e.target.value)
+                    }
                   />
                 </td>
                 <td className="px-4 py-3">
                   <SelectInput
                     labelText={null}
                     options={["212 GB", "512 GB", "812 GB", "1 TB"]}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      onRecStorageChange(e.target.value)
+                    }
                   />
                 </td>
               </tr>
@@ -167,6 +217,7 @@ const Step3 = () => {
                         label: "or better",
                       },
                     ]}
+                    onChange={(selected: any) => onMinGPUChange(selected)}
                   />
                 </td>
                 <td className="px-4 py-3">
@@ -194,6 +245,7 @@ const Step3 = () => {
                         label: "or better",
                       },
                     ]}
+                    onChange={(selected: any) => onRecGPUChange(selected)}
                   />
                 </td>
               </tr>
@@ -203,6 +255,9 @@ const Step3 = () => {
                   <SelectInput
                     labelText={null}
                     options={["Windows Compatible Audio Device"]}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      onMinSoundCardChange(e.target.value)
+                    }
                   />
                 </td>
                 <td className="px-4 py-3">
@@ -210,6 +265,9 @@ const Step3 = () => {
                   <SelectInput
                     labelText={null}
                     options={["Windows Compatible Audio Device"]}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      onRecSoundCardChange(e.target.value)
+                    }
                   />
                 </td>
               </tr>
@@ -220,6 +278,9 @@ const Step3 = () => {
                     labelText={null}
                     placeholderText="Additional Notes"
                     defaultText=""
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      onNotesChange(e.target.value)
+                    }
                   />
                 </td>
               </tr>
@@ -235,6 +296,7 @@ const Step3 = () => {
                       { value: "ubisoft", label: "Ubisoft" },
                       { value: "steam", label: "Steam" },
                     ]}
+                    onChange={(selected: any) => onAccountsChange(selected)}
                   />
                 </td>
               </tr>
@@ -248,6 +310,7 @@ const Step3 = () => {
                       { value: "in-hi", label: "Hindi" },
                       { value: "fa-fr", label: "French" },
                     ]}
+                    onChange={(selected: any) => onLanguageChange(selected)}
                   />
                 </td>
               </tr>

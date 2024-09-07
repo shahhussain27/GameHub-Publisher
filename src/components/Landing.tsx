@@ -2,8 +2,11 @@ import React from "react";
 import logoW from "../../public/assets/gamehubW.png";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const Landing = () => {
+  const { data: session } = useSession();
+
   return (
     <div className="flex flex-col min-h-screen bg-transparent text-white">
       <div className="flex-1 flex flex-col lg:flex-row items-center justify-center p-8 gap-12">
@@ -48,11 +51,19 @@ const Landing = () => {
             Start distributing PC & Mobile games on the GameHub Store with our
             new self-service publishing tools.
           </p>
-          <Link href={"/auth/signin"}>
-            <button className="bg-white text-[#0E0E1E] hover:bg-gray-200 font-bold py-2.5 px-6 rounded">
-              SIGN UP TODAY
-            </button>
-          </Link>
+          {session ? (
+            <Link href={"/dashboard"}>
+              <button className="bg-white text-[#0E0E1E] hover:bg-gray-200 font-bold py-2.5 px-6 rounded">
+                DASHBOARD
+              </button>
+            </Link>
+          ) : (
+            <Link href={"/auth/signin"}>
+              <button className="bg-white text-[#0E0E1E] hover:bg-gray-200 font-bold py-2.5 px-6 rounded">
+                SIGN UP TODAY
+              </button>
+            </Link>
+          )}
         </div>
       </div>
       <footer className="text-center p-4 text-sm text-gray-500">

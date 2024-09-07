@@ -2,9 +2,19 @@
 import React, { useState } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 
-const Stepper = ({ steps }: { steps: React.ReactNode[] }) => {
-  //{ steps, form }: {steps: React.ReactNode[], form: React.ReactNode[]}
+const Stepper = ({
+  steps,
+  productData,
+}: {
+  steps: React.ReactNode[];
+  productData: any;
+}) => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  // currentStpe's->input's-> empty->next(disabled)->fill(enabled)
+ // form validation - pending
+ 
 
   const goNext = () => {
     if (currentStep < steps.length - 1) {
@@ -18,7 +28,7 @@ const Stepper = ({ steps }: { steps: React.ReactNode[] }) => {
     }
   };
 
-  // console.log(steps)
+  // console.log(productData);
 
   return (
     <div className="">
@@ -59,7 +69,8 @@ const Stepper = ({ steps }: { steps: React.ReactNode[] }) => {
         {currentStep < steps.length - 1 ? (
           <button
             onClick={goNext}
-            className="bg-primary text-white px-4 py-2 rounded hover:bg-blue-600"
+            disabled={isDisabled}
+            className="disabled:bg-primary/20 bg-primary text-white px-4 py-2 rounded hover:bg-blue-600"
           >
             Next
           </button>
