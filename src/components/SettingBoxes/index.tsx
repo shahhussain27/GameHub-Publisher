@@ -1,8 +1,11 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 const SettingBoxes = () => {
+  const { data: session } = useSession();
+
   return (
     <>
       <div className="grid grid-cols-5 gap-8">
@@ -24,9 +27,12 @@ const SettingBoxes = () => {
                   >
                     Learn more
                   </a>{" "}
-                  <br /> <h2>If you are registered for VAT, you may not be charged
-                  VAT on your purchase. To get started, enter your COMPANY VAT
-                  NUMBER.</h2>
+                  <br />{" "}
+                  <h2>
+                    If you are registered for VAT, you may not be charged VAT on
+                    your purchase. To get started, enter your COMPANY VAT
+                    NUMBER.
+                  </h2>
                 </p>
                 <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                   <div className="w-full sm:w-1/2">
@@ -183,8 +189,8 @@ const SettingBoxes = () => {
                         type="text"
                         name="fullName"
                         id="fullName"
-                        placeholder="Devid Jhon"
-                        defaultValue="Devid Jhon"
+                        value={session?.user?.name || undefined}
+                        disabled
                       />
                     </div>
                   </div>
@@ -257,8 +263,8 @@ const SettingBoxes = () => {
                       type="email"
                       name="emailAddress"
                       id="emailAddress"
-                      placeholder="devidjond45@gmail.com"
-                      defaultValue="devidjond45@gmail.com"
+                      value={session?.user?.email || undefined}
+                      disabled
                     />
                   </div>
                 </div>
@@ -299,8 +305,8 @@ const SettingBoxes = () => {
                       type="text"
                       name="Username"
                       id="Username"
-                      placeholder="devidjhon24"
-                      defaultValue="devidjhon24"
+                      value={session?.user?.name || undefined}
+                      disabled
                     />
                   </div>
                 </div>
@@ -351,7 +357,7 @@ const SettingBoxes = () => {
                   id="FileUpload"
                   className="relative mb-5.5 block w-full cursor-pointer appearance-none rounded-xl border border-dashed border-gray-4 bg-gray-2 px-4 py-4 hover:border-primary dark:border-dark-3 dark:bg-dark-2 dark:hover:border-primary sm:py-7.5"
                 >
-                 <div className="">1</div>
+                  <div className="">1</div>
                 </div>
 
                 <div className="flex justify-end gap-3">

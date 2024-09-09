@@ -1,8 +1,40 @@
 "use client";
-import React, { useState } from "react";
-import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const SignupWithPassword = () => {
+  const { status } = useSession();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      if (res.ok) {
+        router.push("/auth/signin");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/");
+    }
+  }, [status]);
   return (
     <form>
       <div className="mb-4">
@@ -17,6 +49,8 @@ const SignupWithPassword = () => {
             type="text"
             placeholder="Enter your name"
             name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             className="w-full rounded-lg border border-stroke bg-transparent py-[15px] pl-6 pr-11 font-medium text-dark outline-none focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary"
           />
 
@@ -58,6 +92,8 @@ const SignupWithPassword = () => {
             type="email"
             placeholder="Enter your email"
             name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full rounded-lg border border-stroke bg-transparent py-[15px] pl-6 pr-11 font-medium text-dark outline-none focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary"
           />
 
@@ -94,6 +130,8 @@ const SignupWithPassword = () => {
             name="password"
             placeholder="Enter your password"
             autoComplete="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full rounded-lg border border-stroke bg-transparent py-[15px] pl-6 pr-11 font-medium text-dark outline-none focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary"
           />
 
@@ -126,6 +164,7 @@ const SignupWithPassword = () => {
       <div className="mb-4.5">
         <button
           type="submit"
+          onClick={handleSubmit}
           className="flex w-full cursor-pointer items-center justify-center gap-2 rounded bg-primary p-4 text-white font-bold transition hover:bg-opacity-90"
         >
           Create account

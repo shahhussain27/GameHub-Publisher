@@ -1,11 +1,31 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { signIn, useSession } from "next-auth/react";
 
 export default function SigninWithPassword() {
+  const { status } = useSession();
   const [data, setData] = useState({
     remember: false,
   });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    signIn("credentials", {
+      email,
+      password,
+    });
+  };
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/");
+    }
+  }, [status]);
 
   return (
     <form>
@@ -21,6 +41,8 @@ export default function SigninWithPassword() {
             type="email"
             placeholder="Enter your email"
             name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full rounded-lg border border-stroke bg-transparent py-[15px] pl-6 pr-11 font-medium text-dark outline-none focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary"
           />
 
@@ -57,6 +79,8 @@ export default function SigninWithPassword() {
             name="password"
             placeholder="Enter your password"
             autoComplete="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full rounded-lg border border-stroke bg-transparent py-[15px] pl-6 pr-11 font-medium text-dark outline-none focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary"
           />
 
@@ -131,6 +155,7 @@ export default function SigninWithPassword() {
       <div className="mb-4.5">
         <button
           type="submit"
+          onClick={handleSubmit}
           className="flex w-full cursor-pointer items-center justify-center gap-2 rounded bg-primary p-4 text-white font-bold transition hover:bg-opacity-90"
         >
           Sign In

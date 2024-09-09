@@ -10,11 +10,12 @@ const Stepper = ({
   productData: any;
 }) => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   // currentStpe's->input's-> empty->next(disabled)->fill(enabled)
- // form validation - pending
- 
+  // form validation - pending
+
+  console.log(productData);
 
   const goNext = () => {
     if (currentStep < steps.length - 1) {
@@ -47,7 +48,8 @@ const Stepper = ({
               )}{" "}
               {index === 0 && <>Product Details</>}
               {index === 1 && <> Product Poster</>}
-              {index === 2 && <> System Requirements</>}
+              {index === 2 && <> Upload File</>}
+              {index === 3 && <> System Requirements</>}
             </h3>
             <div
               className={` h-1 rounded ${

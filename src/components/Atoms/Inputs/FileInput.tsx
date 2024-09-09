@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { BsUpload } from "react-icons/bs";
-import { FaEdit } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
 
 const FileInput = ({ labelText, w, h, onChange }: any) => {

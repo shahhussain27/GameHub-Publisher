@@ -16,17 +16,23 @@ const DropdownUser = () => {
         href="#"
       >
         <span className="h-10 w-10 rounded-full">
-          <Image
-            width={110}
-            height={110}
-            src={`${session?.user?.image}`}
-            style={{
-              width: "auto",
-              height: "auto",
-            }}
-            alt="User"
-            className="overflow-hidden rounded-full"
-          />
+          {session?.user?.image ? (
+            <Image
+              width={110}
+              height={110}
+              src={`${session?.user?.image}`}
+              style={{
+                width: "auto",
+                height: "auto",
+              }}
+              alt="User"
+              className="overflow-hidden rounded-full"
+            />
+          ) : (
+            <div className="flex justify-center items-center text-semibold text-2xl h-10 w-10 rounded-full bg-gray-300 text-dark-2 uppercase">
+              {session?.user?.name?.charAt(0)}
+            </div>
+          )}
         </span>
 
         <span className="flex items-center gap-2 font-medium text-dark dark:text-dark-6">
@@ -57,17 +63,23 @@ const DropdownUser = () => {
         >
           <div className="flex items-center gap-2.5 px-5 pb-5.5 pt-3.5">
             <span className="relative block h-12 w-12 rounded-full">
-              <Image
-                width={112}
-                height={112}
-                src={`${session?.user?.image}`}
-                style={{
-                  width: "auto",
-                  height: "auto",
-                }}
-                alt="User"
-                className="overflow-hidden rounded-full"
-              />
+              {session?.user?.image ? (
+                <Image
+                  width={112}
+                  height={112}
+                  src={`${session?.user?.image}`}
+                  style={{
+                    width: "auto",
+                    height: "auto",
+                  }}
+                  alt="User"
+                  className="overflow-hidden rounded-full"
+                />
+              ) : (
+                <div className="flex justify-center items-center text-semibold text-2xl h-12 w-12 rounded-full bg-gray-300 text-dark-2 uppercase">
+                  {session?.user?.name?.charAt(0)}
+                </div>
+              )}
 
               <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-green dark:border-gray-dark"></span>
             </span>

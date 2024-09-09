@@ -4,7 +4,7 @@ import Image from "next/image";
 import { CiShoppingCart, CiWavePulse1, CiSun } from "react-icons/ci";
 import Link from "next/link";
 
-const Card = ({ view, analyticsPage }) => {
+const Card = ({ view, analyticsPage }: any) => {
   return (
     <div
       className={`${view ? "flex flex-col w-[350px] h-[430px] rounded-[10px] dark:bg-gray-dark" : "flex w-full h-20 items-center px-2 rounded dark:bg-[#020D1A] border border-primary/[.07] dark:border-slate-600 hover:hover:bg-primary/[.07] dark:hover:bg-slate-600"}   bg-white shadow-1 text-black dark:text-white  cursor-pointer`}

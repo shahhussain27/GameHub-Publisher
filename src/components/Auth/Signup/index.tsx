@@ -1,13 +1,15 @@
-"use client"
+"use client";
 import React from "react";
 import SigninButtons from "../SigninButtons";
 import Link from "next/link";
 import SignupWithPassword from "../SignupWithPassword";
 
 const Signup = () => {
+  
+  
+
   return (
     <>
-      {" "}
       <div className="flex flex-wrap gap-4 justify-center">
         <SigninButtons />
       </div>

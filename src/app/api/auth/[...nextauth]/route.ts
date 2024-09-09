@@ -1,9 +1,18 @@
-import NextAuth from "next-auth";
+import NextAuth, { User } from "next-auth";
+import { compare } from "bcrypt";
+import { connectToDB } from "@/lib/mongoDB/mongoose";
+import DevUser from "@/lib/models/DevUser";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import DiscordProvider from "next-auth/providers/discord";
 import FacebookProvider from "next-auth/providers/facebook";
 import TwitchProvider from "next-auth/providers/twitch";
+import CredentialsProvider from "next-auth/providers/credentials";
+
+interface Credentials {
+  email: string;
+  password: string;
+}
 
 const handler = NextAuth({
   providers: [
@@ -26,6 +35,35 @@ const handler = NextAuth({
     TwitchProvider({
       clientId: process.env.TWITCH_CLIENT_ID as string,
       clientSecret: process.env.TWITCH_CLIENT_SECRET as string,
+    }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(
+        credentials: Record<"email" | "password", string> | undefined
+      ): Promise<User | null> {
+        if (!credentials) {
+          throw new Error("Credentials not provided");
+        }
+        await connectToDB();
+
+        const user = await DevUser.findOne({
+          email: credentials?.email,
+        });
+
+        if (user && (await compare(credentials?.password, user.password))) {
+          return {
+            id: user._id.toString(),
+            email: user.email,
+            name: user.name,
+          };
+        }
+
+        return null;
+      },
     }),
   ],
   //   callbacks: {

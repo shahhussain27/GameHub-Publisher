@@ -27,7 +27,7 @@ const FloatingBubble: React.FC<{ position: THREE.Vector3 }> = ({
   });
 
   return (
-    <mesh ref={ref} position={position}>
+    <mesh ref={ref} position={position} >
       <sphereGeometry args={[0.5, 32, 32]} />
 
       <meshStandardMaterial
@@ -61,6 +61,7 @@ const ThreeDScene: React.FC = () => {
         zIndex: -1,
       }}
       camera={{ position: [0, 0, 5], fov: 75 }}
+      className=""
     >
       <ambientLight intensity={1} />
       <directionalLight position={[2, 5, 2]} intensity={1} />

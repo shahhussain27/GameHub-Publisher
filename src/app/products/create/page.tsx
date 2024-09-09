@@ -5,6 +5,7 @@ import Stepper from "@/components/Stepper";
 import Step1 from "@/components/Forms/ProductSteps/Step1";
 import Step2 from "@/components/Forms/ProductSteps/Step2";
 import Step3 from "@/components/Forms/ProductSteps/Step3";
+import Step4 from "@/components/Forms/ProductSteps/Step4";
 
 const page = () => {
   //step 1
@@ -20,6 +21,9 @@ const page = () => {
   const [title, setTitle] = useState("");
 
   //step 3
+  const [file, setFile] = useState<File | null>(null);
+
+  //step 4
   const [minOS, setMinOS] = useState<any[]>([]);
   const [RecOS, setRecOS] = useState<any[]>([]);
   const [minCPU, setMinCPU] = useState<any[]>([]);
@@ -38,7 +42,7 @@ const page = () => {
   //useState->props->setStates->StepsComponents->StateValues->Forms->Stepper
 
   const productData = new FormData();
-  productData.append("productName", name); 
+  productData.append("productName", name);
   productData.append("productPrice", price);
   productData.append("productPublisher", publisher);
   productData.append("productDeveloper", developer);
@@ -52,6 +56,10 @@ const page = () => {
     productData.append("productPoster", poster);
   }
   productData.append("productTitle", title);
+
+  if (file) {
+    productData.append("file", file);
+  }
 
   productData.append("productMinOS", JSON.stringify(minOS));
   productData.append("productRecOS", JSON.stringify(RecOS));
@@ -80,7 +88,8 @@ const page = () => {
       onLogoChange={setLogo}
     />,
     <Step2 onPosterChange={setPoster} onTitleChange={setTitle} />,
-    <Step3
+    <Step3 onFileChange={setFile} />,
+    <Step4
       onMinOSChange={setMinOS}
       onRecOSChange={setRecOS}
       onMinCPUChange={setMinCPU}
@@ -98,7 +107,6 @@ const page = () => {
       onLanguageChange={setLanguages}
     />,
   ];
-
 
   return (
     <DefaultLayout>
