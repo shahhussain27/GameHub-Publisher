@@ -16,6 +16,7 @@ const Card = ({ view, analyticsPage }: any) => {
           height={view ? 70 : 100}
           width={view ? 350 : 100}
           className={`${view ? "rounded-t-[10px]" : "rounded"}`}
+          loading="lazy"
         />
       </div>
       <div className="flex flex-col gap-6 px-6 py-4">

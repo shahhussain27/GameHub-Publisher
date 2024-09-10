@@ -62,14 +62,14 @@ const Header = (props: {
           </button>
           {/* <!-- Hamburger Toggle BTN --> */}
 
-          <Link className="" href="/">
+          <Link className="max-sm:hidden" href="/">
             <Image
               width={40}
               height={40}
               src={logoB} // light
               alt="Logo"
               priority
-              className="dark:hidden"
+              className="dark:hidden "
               style={{ width: "auto", height: "auto" }}
             />
             <Image
@@ -88,7 +88,7 @@ const Header = (props: {
               <li className="font-bold text-2xl text-black dark:text-white cursor-pointer">
                 Dev
               </li>
-              <Link href={"/dashboard"} className="cursor-pointer">
+              <Link href={"/support"} className="cursor-pointer">
                 Support
               </Link>
               <li className="cursor-pointer">Documentation</li>
