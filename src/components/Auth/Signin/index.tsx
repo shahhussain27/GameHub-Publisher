@@ -13,7 +13,7 @@ export default function Signin() {
       {/* google*,github*,xboxX,steamX, twitch* */}
 
       <div className="my-6 flex items-center justify-center">
-        <span className="block h-px w-full bg-stroke dark:bg-dark-3/40"></span>
+        <span className="block w-full bg-stroke dark:bg-dark-3/40"></span>
         <div className="block w-full min-w-fit bg-white px-3 text-center font-medium rounded-xl dark:bg-gray-dark/40">
           Or sign in with email
         </div>

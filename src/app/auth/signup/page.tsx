@@ -22,7 +22,7 @@ const SignUp: React.FC = () => {
             zIndex: 1,
           }}
         >
-          <div className="p-12">
+          <div className="p-12 max-sm:p-0">
             <div className="flex items-center justify-center ">
               <div className="w-full xl:w-1/2 rounded-[10px] bg-white shadow-1 dark:bg-gray-dark/40 dark:shadow-card">
                 <div className="w-full p-4 sm:p-12.5 xl:p-15">

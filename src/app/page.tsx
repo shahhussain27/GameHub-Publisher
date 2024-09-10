@@ -8,7 +8,7 @@ export default function Home() {
     <>
       
         <main
-          style={{ position: "relative", height: "100vh", overflow: "hidden" }}
+          style={{ position: "relative", height: "100vh" }}
         >
           <ThreeDScene />
           <div

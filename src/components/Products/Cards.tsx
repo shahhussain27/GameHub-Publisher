@@ -6,7 +6,7 @@ const Cards = () => {
   const [view, setView] = useState(true);
   return (
     <>
-      <section className="flex justify-end items-end gap-1 p-4 w-full text-2xl">
+      <section className="flex justify-end items-end gap-1 py-4 w-full text-2xl">
         <button
           onClick={() => setView(true)}
           className={`${view ? "text-primary bg-primary/[.07] dark:bg-slate-800 " : ""} hover:bg-primary/[.07] dark:hover:bg-slate-800 p-1 rounded`}

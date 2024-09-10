@@ -105,7 +105,7 @@ const Header = (props: {
             <DropdownUser />
           ) : (
             <Link href={"/auth/signin"}>
-              <button className="bg-white text-[#0E0E1E] hover:bg-gray-200 font-bold text-sm py-1.5 px-4 rounded">
+              <button className="bg-white text-[#0E0E1E] hover:bg-gray-200 font-bold text-sm py-1.5 px-4 rounded max-sm:hidden">
                 LOG IN
               </button>
             </Link>
