@@ -48,8 +48,9 @@ const Stepper = ({
               )}{" "}
               {index === 0 && <>Product Details</>}
               {index === 1 && <> Product Poster</>}
-              {index === 2 && <> Upload File</>}
-              {index === 3 && <> System Requirements</>}
+              {index === 2 && <> Story Overview</>}
+              {index === 3 && <> Upload File</>}
+              {index === 4 && <> System Requirements</>}
             </h3>
             <div
               className={` h-1 rounded ${

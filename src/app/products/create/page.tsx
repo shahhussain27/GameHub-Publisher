@@ -6,6 +6,7 @@ import Step1 from "@/components/Forms/ProductSteps/Step1";
 import Step2 from "@/components/Forms/ProductSteps/Step2";
 import Step3 from "@/components/Forms/ProductSteps/Step3";
 import Step4 from "@/components/Forms/ProductSteps/Step4";
+import Step5 from "@/components/Forms/ProductSteps/Step5";
 
 const page = () => {
   //step 1
@@ -88,8 +89,9 @@ const page = () => {
       onLogoChange={setLogo}
     />,
     <Step2 onPosterChange={setPoster} onTitleChange={setTitle} />,
-    <Step3 onFileChange={setFile} />,
-    <Step4
+    <Step3 />,
+    <Step4 onFileChange={setFile} />,
+    <Step5
       onMinOSChange={setMinOS}
       onRecOSChange={setRecOS}
       onMinCPUChange={setMinCPU}

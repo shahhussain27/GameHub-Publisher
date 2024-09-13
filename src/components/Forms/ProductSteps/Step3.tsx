@@ -1,102 +1,56 @@
-import React, { useState } from "react";
-import { IoCloudUploadOutline } from "react-icons/io5";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import Image from "next/image";
+import FileInput from "@/components/Atoms/Inputs/FileInput";
+import Textarea from "@/components/Atoms/Inputs/Textarea";
 
-interface Step3Props {
-  onFileChange: (file: File | null) => void;
-}
-
-const Step3: React.FC<Step3Props> = ({ onFileChange }) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [errorMessage, setErrorMessage] = useState<string>("");
-  const [uploadProgress, setUploadProgress] = useState<number>(0);
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files ? event.target.files[0] : null;
-    if (!file) return;
-
-    if (file.type.startsWith("image/") || file.type.startsWith("video/")) {
-      setErrorMessage("Only .zip, .exe, .apk, and .msi files are allowed.");
-      setSelectedFile(null);
-      return;
-    }
-
-    if (file) {
-      onFileChange(file);
-    }
-
-    setErrorMessage("");
-    setSelectedFile(file);
-    handleUpload(file);
+const Step3 = () => {
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 1,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
   };
 
-  const handleUpload = (file: File) => {
-    const uploadSimulator = setInterval(() => {
-      setUploadProgress((prevProgress) => {
-        if (prevProgress >= 100) {
-          clearInterval(uploadSimulator);
-          return 100;
-        }
-        return prevProgress + 10;
-      });
-    }, 500);
-    setUploadProgress(0);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const uploadedFile = e.target.files?.[0];
+    if (uploadedFile) {
+      //   onPosterChange(uploadedFile);
+    }
   };
-
   return (
     <>
       <div className="w-full mb-8">
-        <h2 className="text-3xl font-bold text-white">File Uploads</h2>
+        <h2 className="text-3xl font-bold text-white">Story Overview</h2>
       </div>
-      <section className="flex justify-center items-center">
-        <div className="flex flex-col justify-center items-center border-4 border-dotted rounded-xl border-primary/40 w-1/2 h-[350px] p-2">
-          <div className="flex flex-col gap-2 items-center ">
-            <IoCloudUploadOutline className="text-5xl" />
-            <label
-              htmlFor="FileUpload"
-              className="bg-primary hover:bg-primary/90 text-white rounded-full py-1.5 px-2 cursor-pointer"
-            >
-              Browser Computer
-            </label>
-            <input
-              type="file"
-              id="FileUpload"
-              name="FileUpload"
+      <section>
+        {" "}
+        <Carousel responsive={responsive} infinite={true}>
+          <div className="flex justify-center items-center w-full h-[350px] border-2 border-primary rounded-xl">
+            <FileInput
+              labelText="Carousel"
+              w={1920}
+              h={350}
               onChange={handleFileChange}
-              className="hidden"
             />
           </div>
-
-          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-
-          {selectedFile && (
-            <div className="w-full mt-3">
-              {uploadProgress == 100 ? (
-                <p>File uploaded successfully</p>
-              ) : (
-                <p>Uploading: {uploadProgress}%</p>
-              )}
-              <progress
-                value={uploadProgress}
-                max="100"
-                className="bg-white w-full rounded-full"
-              />
-            </div>
-          )}
-          {uploadProgress == 100 && selectedFile && (
-            <div className="flex gap-2 text-sm justify-start items-start w-full px-3">
-              <p className="truncate">
-                <strong>File Name:</strong> {selectedFile.name}
-              </p>
-              <p>
-                <strong>File Type:</strong> {selectedFile.name.split(".").pop()}
-              </p>
-              <p>
-                <strong>File Size:</strong>{" "}
-                {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
-              </p>
-            </div>
-          )}
-        </div>
+        </Carousel>
+      </section>
+      <section className="mt-4">
+        <Textarea labelText="Story Heading" defaultText="story" />
+        <Textarea labelText="Story Overview" defaultText="story" />
       </section>
     </>
   );
