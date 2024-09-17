@@ -19,7 +19,7 @@ const Textarea = ({ labelText, defaultText, onChange }: any) => {
         cols={90}
         placeholder={labelText}
         onChange={handleChange}
-        className="w-full rounded-[7px] border-[1.5px] border-stroke bg-transparent px-5.5 py-3 text-dark outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-2 dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary"
+        className="w-full rounded-[7px] border-[1.5px] border-primary bg-transparent px-5.5 py-3 text-dark outline-none transition focus:border-primary/70 active:border-primary/90 disabled:cursor-default disabled:bg-gray-2  dark:text-white dark:focus:border-primary"
       ></textarea>
     </div>
   );

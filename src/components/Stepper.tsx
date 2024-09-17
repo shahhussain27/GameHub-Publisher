@@ -15,7 +15,7 @@ const Stepper = ({
   // currentStpe's->input's-> empty->next(disabled)->fill(enabled)
   // form validation - pending
 
-  console.log(productData);
+  // console.log(productData.get("carouselImages"));
 
   const goNext = () => {
     if (currentStep < steps.length - 1) {
@@ -80,7 +80,7 @@ const Stepper = ({
         ) : (
           <button
             // onClick={handleCreate}
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+            className="bg-primary text-white px-4 py-2 rounded hover:bg-primary/90"
           >
             Create
           </button>

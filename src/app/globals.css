@@ -45,7 +45,8 @@ canvas {
   display: block;
 }
 
-.items-center{
-  @apply flex justify-center items-center
+.items-center {
+  @apply flex justify-center items-center;
 }
+
 

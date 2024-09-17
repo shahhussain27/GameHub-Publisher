@@ -37,9 +37,9 @@ const Step1: React.FC<Step1Props> = ({
       </div>
       <section className="flex justify-between items-start gap-4 ">
         <FileInput
-          labelText="Logo"
+          labelText="poster"
           w={383}
-          h={250}
+          h={400}
           onChange={handleFileChange}
         />
         <div className="grid grid-cols-2 gap-6">

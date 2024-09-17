@@ -6,20 +6,17 @@ import React, { useState } from "react";
 export default function Home() {
   return (
     <>
-      
-        <main
-          style={{ position: "relative", height: "100vh" }}
+      <main style={{ position: "relative", height: "100vh" }}>
+        <ThreeDScene />
+        <div
+          style={{
+            position: "relative",
+            zIndex: 1,
+          }}
         >
-          <ThreeDScene />
-          <div
-            style={{
-              position: "relative",
-              zIndex: 1,
-            }}
-          >
-            <Landing />
-          </div>
-        </main>
+          <Landing />{" "}
+        </div>
+      </main>
     </>
   );
 }

@@ -18,15 +18,15 @@ const MultiSelectInput = ({ placeholder, options, onChange }: any) => {
   const customStyles = {
     control: (provided: any, state: { isFocused: any }) => ({
       ...provided,
-      backgroundColor: "#1F2A37",
+      backgroundColor: "#020D1A",
       color: "#9CA3AF",
 
-      borderColor: state.isFocused ? "#1F2A37" : "#1F2A37",
+      borderColor: state.isFocused ? "#5750F1" : "#5750F1",
       borderRadius: state.isFocused ? "7px" : "7px",
       boxShadow: state.isFocused ? "0 0 0 1px #3b82f6" : "none",
       padding: state.isFocused ? "5px" : "5px",
       "&:hover": {
-        borderColor: "#1F2A37",
+        borderColor: "#5750F1",
       },
     }),
     option: (provided: any, state: { isSelected: any; isFocused: any }) => ({

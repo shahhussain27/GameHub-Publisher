@@ -14,23 +14,28 @@ const page = () => {
   const [price, setPrice] = useState("");
   const [publisher, setPublisher] = useState("");
   const [developer, setDeveloper] = useState("");
-  const [platform, setPlatform] = useState("");
-  const [engine, setEngine] = useState("");
+  const [platform, setPlatform] = useState("Windows");
+  const [engine, setEngine] = useState("Unity");
   const [logo, setLogo] = useState<File | null>(null);
   //step 2
   const [poster, setPoster] = useState<File | null>(null);
   const [title, setTitle] = useState("");
 
   //step 3
-  const [file, setFile] = useState<File | null>(null);
+  const [carouselsImages, setCarouselsImages] = useState<File[]>([]);
+  const [storyHeading, setStoryHeading] = useState("");
+  const [storyOverview, setStoryOverview] = useState("");
 
   //step 4
+  const [file, setFile] = useState<File | null>(null);
+
+  //step 5
   const [minOS, setMinOS] = useState<any[]>([]);
   const [RecOS, setRecOS] = useState<any[]>([]);
   const [minCPU, setMinCPU] = useState<any[]>([]);
   const [recCPU, setRecCPU] = useState<any[]>([]);
-  const [minRAM, setMinRAM] = useState("");
-  const [recRAM, setRecRAM] = useState("");
+  const [minRAM, setMinRAM] = useState("4 GB");
+  const [recRAM, setRecRAM] = useState("6 GB");
   const [minStorage, setMinStorage] = useState("");
   const [recStorage, setRecStorage] = useState("");
   const [minGPU, setMinGPU] = useState<any[]>([]);
@@ -57,6 +62,13 @@ const page = () => {
     productData.append("productPoster", poster);
   }
   productData.append("productTitle", title);
+
+  if (carouselsImages) {
+    productData.append("carouselImages", carouselsImages);
+  }
+  productData.append("storyHeading", storyHeading);
+  productData.append("storyOverview", storyOverview);
+
 
   if (file) {
     productData.append("file", file);
@@ -89,7 +101,11 @@ const page = () => {
       onLogoChange={setLogo}
     />,
     <Step2 onPosterChange={setPoster} onTitleChange={setTitle} />,
-    <Step3 />,
+    <Step3
+      onCarouselChange={setCarouselsImages}
+      onHeadingChange={setStoryHeading}
+      onStoryChange={setStoryOverview}
+    />,
     <Step4 onFileChange={setFile} />,
     <Step5
       onMinOSChange={setMinOS}

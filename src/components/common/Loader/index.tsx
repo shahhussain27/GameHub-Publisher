@@ -1,8 +1,9 @@
 import Image from "next/image";
 
 const Loader = () => {
+  
   return (
-    <div className="flex h-screen items-center justify-center bg-[#020D1A]">
+    <div className="flex flex-col h-screen items-center justify-center gap-4 bg-gradient-to-r from-[#020D1A]  to-[#05162a]">
       <Image
         src={"/assets/loading.gif"}
         alt="loading..."
@@ -10,7 +11,7 @@ const Loader = () => {
         width={150}
         className="mix-blend-lighten"
       />
-      {/* <div className="h-10 w-10 animate-spin rounded-full border-2 border-solid border-primary border-t-transparent"></div> */}
+      <h1 className="text-2xl font-extrabold uppercase text-[#313333]">beta 1.0.0</h1>
     </div>
   );
 };

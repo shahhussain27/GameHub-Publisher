@@ -3,8 +3,8 @@ import React from "react";
 const AlertError = () => {
   return (
     <>
-      <div className="flex w-full rounded-[10px] border-l-6 border-red-light bg-red-light-5 px-7 py-8 dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
-        <div className="mr-5 mt-[5px] flex h-8 w-full max-w-8 items-center justify-center rounded-md bg-red-light">
+      <div className="fixed top-20 z-999 flex w-2/5 h-20 rounded-[10px] border-l-6 border-red-light bg-red-light-5 px-7 py-4  dark:bg-[#1B1B24] overflow-hidden">
+        <div className="mr-5 flex h-8 w-full max-w-8 items-center justify-center rounded-md bg-red-light">
           <svg
             width="11"
             height="11"
@@ -20,11 +20,11 @@ const AlertError = () => {
           </svg>
         </div>
         <div className="w-full">
-          <h5 className="mb-4 font-bold leading-[22px] text-[#BC1C21]">
+          <h5 className="mb-1 font-bold text-sm leading-[22px] text-[#BC1C21]">
             There were 1 errors with your submission
           </h5>
           <ul>
-            <li className="text-[#CD5D5D]">
+            <li className="text-[#CD5D5D] text-sm">
               Lorem Ipsum is simply dummy text of the printing
             </li>
           </ul>

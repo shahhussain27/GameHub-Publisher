@@ -61,7 +61,7 @@ const ThreeDScene: React.FC = () => {
         zIndex: -1,
       }}
       camera={{ position: [0, 0, 5], fov: 75 }}
-      className=""
+      className="dark:bg-gradient-to-r from-[#020D1A]  to-[#05162a]"
     >
       <ambientLight intensity={1} />
       <directionalLight position={[2, 5, 2]} intensity={1} />

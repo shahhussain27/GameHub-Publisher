@@ -26,12 +26,7 @@ const FileInput = ({ labelText, w, h, onChange }: any) => {
 
   return (
     <div className={`col-span-5 xl:col-span-2 w-[${w}px]`}>
-      <div className="rounded-[10px] border border-stroke bg-white shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
-        <div className="border-b border-stroke px-7 py-4 dark:border-dark-3">
-          <h3 className="font-medium text-dark dark:text-white">
-            Upload {labelText}
-          </h3>
-        </div>
+      <div className=" shadow-1 border-4 border-dotted rounded-xl border-primary/40 dark:shadow-card ">
         <div className="p-7">
           <form>
             {preview ? (
@@ -55,7 +50,7 @@ const FileInput = ({ labelText, w, h, onChange }: any) => {
               <>
                 <div
                   id="FileUpload"
-                  className="relative mb-5.5 block w-full cursor-pointer appearance-none rounded-xl border border-dashed border-gray-4 bg-gray-2 px-4 py-4 hover:border-primary dark:border-dark-3 dark:bg-dark-2 dark:hover:border-primary sm:py-7.5"
+                  className="relative mb-5.5 block w-full cursor-pointer appearance-none rounded-xl  px-4 py-4 sm:py-7.5"
                 >
                   <input
                     type="file"
@@ -69,13 +64,10 @@ const FileInput = ({ labelText, w, h, onChange }: any) => {
                     <span className="flex h-13.5 w-13.5 items-center justify-center rounded-full border border-stroke bg-white dark:border-dark-3 dark:bg-gray-dark">
                       <BsUpload className="text-primary" />
                     </span>
-                    <p className="mt-2.5 text-body-sm font-medium">
-                      <span className="text-primary">Click to upload</span> or
-                      drag and drop
-                    </p>
-                    <p className="mt-1 text-body-xs">
-                      PNG or JPG (max, {w} X {h}px)
-                    </p>
+
+                    <button className="bg-primary hover:bg-primary/90 text-white rounded-full py-1.5 px-2 cursor-pointer mt-4">
+                      Browser Computer ({w}x{h}px)
+                    </button>
                   </div>
                 </div>
               </>
