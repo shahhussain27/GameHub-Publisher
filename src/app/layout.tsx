@@ -15,7 +15,6 @@ export default function RootLayout({
   children: React.ReactNode;
   session: any;
 }>) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
 
 
@@ -31,7 +30,7 @@ export default function RootLayout({
       <body suppressHydrationWarning={true}>
         <SessionProvider session={session}>
           {!loading && (
-            <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+            <Header />
           )}
           {loading ? <Loader /> : children}
         </SessionProvider>
