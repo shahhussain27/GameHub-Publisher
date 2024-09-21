@@ -7,7 +7,7 @@ import Step2 from "@/components/Forms/ProductSteps/Step2";
 import Step3 from "@/components/Forms/ProductSteps/Step3";
 import Step4 from "@/components/Forms/ProductSteps/Step4";
 
-const Page  = () => {
+const Page = () => {
   //step 1
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -58,6 +58,7 @@ const Page  = () => {
 
   const steps = [
     <Step1
+      key="step1"
       name={name}
       price={price}
       platform={platform}
@@ -71,13 +72,14 @@ const Page  = () => {
       onEngineChange={setEngine}
       onLogoChange={setLogo}
     />,
-    <Step2 onPosterChange={setPoster} onTitleChange={setTitle} />,
+    <Step2 key="step2" onPosterChange={setPoster} onTitleChange={setTitle} />,
     <Step3
+      key="step3"
       onCarouselChange={setCarouselsImages}
       onHeadingChange={setStoryHeading}
       onStoryChange={setStoryOverview}
     />,
-    <Step4 onFileChange={setFile} />,
+    <Step4 key="step4" onFileChange={setFile} />,
   ];
 
   return (
@@ -87,4 +89,4 @@ const Page  = () => {
   );
 };
 
-export default Page ;
+export default Page;
