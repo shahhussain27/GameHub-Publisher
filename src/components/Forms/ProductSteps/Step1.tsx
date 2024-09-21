@@ -4,17 +4,14 @@ import SelectInput from "@/components/Atoms/Inputs/SelectInput";
 import TextInput from "@/components/Atoms/Inputs/TextInput";
 import React, { useState } from "react";
 
-interface Step1Props {
-  onNameChange: (value: string) => void;
-  onPriceChange: (value: string) => void;
-  onPublisherChange: (value: string) => void;
-  onDeveloperChange: (value: string) => void;
-  onPlatformChange: (value: string) => void;
-  onEngineChange: (value: string) => void;
-  onLogoChange: (file: File | null) => void;
-}
 
-const Step1: React.FC<Step1Props> = ({
+
+const Step1 = ({
+  name,
+  price,
+  platform,
+  engine,
+  logo,
   onNameChange,
   onPriceChange,
   onPublisherChange,
@@ -22,7 +19,7 @@ const Step1: React.FC<Step1Props> = ({
   onPlatformChange,
   onEngineChange,
   onLogoChange,
-}) => {
+}:any) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = e.target.files?.[0];
     if (uploadedFile) {
@@ -40,13 +37,14 @@ const Step1: React.FC<Step1Props> = ({
           labelText="poster"
           w={383}
           h={400}
+          selectedFile={logo}
           onChange={handleFileChange}
         />
         <div className="grid grid-cols-2 gap-6">
           <TextInput
             labelText="Product name"
             placeholderText="Product name"
-            defaultText=""
+            defaultText={name}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               onNameChange(e.target.value)
             }
@@ -55,7 +53,7 @@ const Step1: React.FC<Step1Props> = ({
           <TextInput
             labelText="Product price"
             placeholderText="Product price"
-            defaultText=""
+            defaultText={price}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               onPriceChange(e.target.value)
             }
@@ -78,6 +76,7 @@ const Step1: React.FC<Step1Props> = ({
           />
           <SelectInput
             labelText="Platform"
+            defaultOption={platform}
             options={["Windows", "Android", "IOS"]}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
               onPlatformChange(e.target.value)
@@ -85,6 +84,7 @@ const Step1: React.FC<Step1Props> = ({
           />
           <SelectInput
             labelText="Game Engine"
+            defaultOption={engine}
             options={["Unity", "UnReal", "Panda3D"]}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
               onEngineChange(e.target.value)

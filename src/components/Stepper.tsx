@@ -15,8 +15,6 @@ const Stepper = ({
   // currentStpe's->input's-> empty->next(disabled)->fill(enabled)
   // form validation - pending
 
-  // console.log(productData.get("carouselImages"));
-
   const goNext = () => {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
@@ -50,7 +48,6 @@ const Stepper = ({
               {index === 1 && <> Product Poster</>}
               {index === 2 && <> Story Overview</>}
               {index === 3 && <> Upload File</>}
-              {index === 4 && <> System Requirements</>}
             </h3>
             <div
               className={` h-1 rounded ${

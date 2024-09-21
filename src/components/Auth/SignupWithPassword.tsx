@@ -2,17 +2,19 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 const SignupWithPassword = () => {
   const { status } = useSession();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const res = await fetch("/api/auth/signup", {
         method: "POST",
@@ -165,9 +167,24 @@ const SignupWithPassword = () => {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="flex w-full cursor-pointer items-center justify-center gap-2 rounded bg-primary p-4 text-white font-bold transition hover:bg-opacity-90"
+          disabled={
+            name.length <= 0 || email.length <= 0 || password.length <= 0
+              ? true
+              : false
+          }
+          className="disabled:bg-primary/40 disabled:cursor-not-allowed flex w-full cursor-pointer items-center justify-center gap-2 rounded bg-primary p-4 text-white font-bold transition hover:bg-opacity-90"
         >
-          Create account
+          {!loading ? (
+            "Create account"
+          ) : (
+            <Image
+              className="w-6 h-6"
+              src={"/assets/loading.svg"}
+              alt="Logo"
+              width={100}
+              height={100}
+            />
+          )}
         </button>
       </div>
     </form>

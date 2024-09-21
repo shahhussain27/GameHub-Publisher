@@ -12,6 +12,7 @@ const SelectInput = ({ labelText, options, defaultOption, onChange }: any) => {
       onChange(e);
     }
   };
+
   return (
     <div>
       <label
@@ -25,11 +26,16 @@ const SelectInput = ({ labelText, options, defaultOption, onChange }: any) => {
           value={selectedOption}
           onChange={handleChange}
           className={`relative  w-full appearance-none rounded-[7px] border border-primary bg-transparent px-5.5 py-3 outline-none transition focus:border-primary/70 active:border-primary/90 dark:border-primary dark:bg-[#020D1A] ${
-            isOptionSelected ? "text-dark dark:text-white"  : ""
+            isOptionSelected ? "text-dark dark:text-white" : ""
           }`}
         >
           {options.map((item: any, index: any) => (
-            <option value={item} className="text-dark-5 dark:text-dark-6">
+            <option
+            key={index}
+              value={item}
+              className="text-dark-5 dark:text-dark-6"
+             
+            >
               {item}
             </option>
           ))}

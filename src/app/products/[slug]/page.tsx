@@ -1,9 +1,6 @@
 import React from "react";
-import Image from "next/image";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import CardImage from "../../../../public/assets/card-img.jpg";
-import SystemTable from "@/components/Products/Product/SystemReq/SystemTable";
 import Carousel from "@/components/Products/Product/Story/StoryCarousel";
 import Details from "@/components/Products/Product/Details/Details";
 
@@ -19,7 +16,7 @@ const page = ({ params }: { params: { slug: string } }) => {
           <Carousel />
         </section>
         <section className="w-full">
-          <SystemTable />
+          <p>Coming Soon...</p>
         </section>
       </div>
     </DefaultLayout>

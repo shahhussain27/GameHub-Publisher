@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import DarkModeSwitcher from "./DarkModeSwitcher";
 import DropdownUser from "./DropdownUser";
@@ -8,10 +9,13 @@ import { useSession } from "next-auth/react";
 import { CiMenuBurger } from "react-icons/ci";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
+import Sidebar from "../Sidebar";
 
 const Header = () => {
   const { data: session } = useSession();
+  const pathname = usePathname();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  // console.log(pathname === "/dashboard", pathname)
 
   return (
     // dark:bg-[#020D1A]
@@ -25,7 +29,7 @@ const Header = () => {
             onClick={() => setIsSidebarOpen((pre) => !pre)}
             className="block rounded-sm border border-stroke bg-white p-1.5 shadow-sm dark:border-dark-3 dark:bg-dark-2 lg:hidden"
           >
-            <CiMenuBurger/>
+            <CiMenuBurger />
           </button>
           <Drawer
             open={isSidebarOpen}
@@ -51,14 +55,18 @@ const Header = () => {
                   Dev
                 </h2>
               </div>
-              <nav>
-                <ul className="flex flex-col justify-center items-start gap-4 text-xl">
-                  <Link href={"/support"} className="cursor-pointer">
-                    Support
-                  </Link>
-                  <li className="cursor-pointer">Documentation</li>
-                </ul>
-              </nav>
+
+              {pathname !== "/dashboard" && (
+                <nav>
+                  <ul className="flex flex-col justify-center items-start gap-4 text-xl">
+                    <Link href={"/support"} className="cursor-pointer">
+                      Support
+                    </Link>
+                    <li className="cursor-pointer">Documentation</li>
+                  </ul>
+                </nav>
+              )}
+              {pathname === "/dashboard" && <Sidebar />}
             </aside>
           </Drawer>
           {/* <!-- Hamburger Toggle BTN --> */}
@@ -89,19 +97,16 @@ const Header = () => {
         </div>
 
         <div className="flex items-center justify-normal gap-2 2xsm:gap-4 lg:w-full lg:justify-between xl:w-auto xl:justify-normal">
-          <ul className="flex items-center gap-2 2xsm:gap-4">
-            <DarkModeSwitcher />
-          </ul>
-
           {session ? (
             <DropdownUser />
           ) : (
             <Link href={"/auth/signin"}>
-              <button className="btn-primary py-1.5">
-                LOG IN
-              </button>
+              <button className="btn-primary py-1.5">LOG IN</button>
             </Link>
           )}
+          <ul className="flex items-center gap-2 2xsm:gap-4">
+            <DarkModeSwitcher />
+          </ul>
         </div>
       </div>
     </header>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { BsUpload } from "react-icons/bs";
 import { AiOutlineDelete } from "react-icons/ai";
 
-const FileInput = ({ labelText, w, h, onChange }: any) => {
+const FileInput = ({ labelText, w, h, onChange, selectedFile }: any) => {
   const [file, setFile] = useState<any>(null);
   const [preview, setPreview] = useState<string | null>(null);
 
@@ -15,7 +15,7 @@ const FileInput = ({ labelText, w, h, onChange }: any) => {
       if (onChange) {
         onChange(e);
       }
-      const fileURL = URL.createObjectURL(uploadedFile);
+      const fileURL = URL.createObjectURL(selectedFile || uploadedFile);
       setPreview(fileURL);
     }
   };
@@ -23,6 +23,7 @@ const FileInput = ({ labelText, w, h, onChange }: any) => {
   const handleDeleteClick = () => {
     setPreview(null);
   };
+
 
   return (
     <div className={`col-span-5 xl:col-span-2 w-[${w}px]`}>

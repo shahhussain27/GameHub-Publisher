@@ -6,7 +6,7 @@ const StoryCarousel = () => {
     <div className="flex max-sm:flex-col items-start justify-center gap-4">
       <Carousel/>
       <div className="flex flex-col items-start justify-center gap-4 w-2/4 max-sm:w-full text-wrap">
-        <h4 className="text-4xl font-bold text-white">Story Heading</h4>
+        <h4 className="text-4xl font-bold text-black dark:text-white">Story Heading</h4>
         <p className="font-medium">
           Story Summary: Lorem ipsum dolor sit amet consectetur adipisicing
           elit. Dolorem, facere. Aut, molestias tempora, natus iste voluptatibus

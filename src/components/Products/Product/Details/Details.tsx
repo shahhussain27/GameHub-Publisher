@@ -3,8 +3,8 @@ import React from "react";
 const Details = () => {
   return (
     <>
-      {" "}
-      <div className="flex flex-col justify-center gap-4 w-2/4">
+      <div className="flex max-sm:flex-col items-start gap-4">
+      <div className="flex flex-col justify-center gap-4 w-2/4 max-sm:w-full">
         <div className="w-full h-[250px] bg-slate-600 rounded-xl">Image</div>
         <div className="w-full h-[80px] bg-slate-800 rounded-xl cursor-pointer hover:border-2 border-white">
           Ratings
@@ -42,12 +42,13 @@ const Details = () => {
         <div className="bg-slate-400 w-full h-[400px] rounded-xl">
           Poster & Video
         </div>
-        <div className="w-full text-white font-medium text-wrap">
+        <div className="w-full text-dark-2 dark:text-white font-medium text-wrap">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam,
           in? Obcaecati atque neque ipsa eius? Saepe reprehenderit nemo ipsam
           molestiae soluta corporis ab dolore tempore. Molestias vero officiis
           nihil voluptatibus ipsam nostrum aliquid id rem dicta.
         </div>
+      </div>
       </div>
     </>
   );
