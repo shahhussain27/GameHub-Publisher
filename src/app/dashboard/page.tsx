@@ -2,7 +2,7 @@
 import ECommerce from "@/components/Dashboard/E-commerce";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import { useState } from "react";
-const page = () => {
+const Page  = () => {
   return (
     <DefaultLayout>
       <ECommerce />
@@ -10,4 +10,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page ;

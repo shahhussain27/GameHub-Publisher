@@ -7,7 +7,7 @@ import Step2 from "@/components/Forms/ProductSteps/Step2";
 import Step3 from "@/components/Forms/ProductSteps/Step3";
 import Step4 from "@/components/Forms/ProductSteps/Step4";
 
-const page = () => {
+const Page  = () => {
   //step 1
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -87,4 +87,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page ;

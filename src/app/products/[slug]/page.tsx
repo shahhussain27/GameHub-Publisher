@@ -4,7 +4,7 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import Carousel from "@/components/Products/Product/Story/StoryCarousel";
 import Details from "@/components/Products/Product/Details/Details";
 
-const page = ({ params }: { params: { slug: string } }) => {
+const Page  = ({ params }: { params: { slug: string } }) => {
   return (
     <DefaultLayout>
       <Breadcrumb pageName={`Product Name`} />
@@ -23,4 +23,4 @@ const page = ({ params }: { params: { slug: string } }) => {
   );
 };
 
-export default page;
+export default Page ;
