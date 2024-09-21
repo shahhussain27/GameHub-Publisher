@@ -7,7 +7,7 @@ const NotFound = () => {
       <Image src={"/assets/404.jpg"} alt="404" width={150} height={150} className="mix-blend-darken dark:invert dark:mix-blend-lighten" />
       <div className="flex flex-col gap-3">
         <h1>404 - Page Not Found</h1>
-        <p>Sorry, the page you're looking for doesn't exist.</p>
+        <p>Sorry, the page you&apos;re looking for doesn&apos;t exist.</p>
         <Link href="/">
           <button className="btn-primary py-1.5">
             Go back home
