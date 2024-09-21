@@ -46,9 +46,9 @@ const Page = () => {
   }
   productData.append("productTitle", title);
 
-  if (carouselsImages) {
-    productData.append("carouselImages", carouselsImages);
-  }
+  // if (carouselsImages) {
+  //   productData.append("carouselImages", carouselsImages);
+  // }
   productData.append("storyHeading", storyHeading);
   productData.append("storyOverview", storyOverview);
 
