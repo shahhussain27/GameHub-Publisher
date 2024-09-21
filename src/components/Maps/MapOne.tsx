@@ -46,9 +46,10 @@ const MapOne: React.FC = () => {
         },
       },
 
-      onRegionTooltipShow(event, tooltip, code) {
+      onRegionTooltipShow({ event, tooltip, code }: any) {
         tooltip.text(
-          `<h5>${tooltip.text()}</h5>` + `<p class="text-xs">Downloads: ${code}</p>`,
+          `<h5>${tooltip.text()}</h5>` +
+            `<p class="text-xs">Downloads: ${code}</p>`,
           true
         );
       },
