@@ -1,4 +1,5 @@
 "use client";
+import Footer from "@/components/Footer";
 import Landing from "@/components/Landing";
 import ThreeDScene from "@/components/ThreeDScene";
 
@@ -13,7 +14,8 @@ export default function Home() {
             zIndex: 1,
           }}
         >
-          <Landing />{" "}
+          <Landing />
+          <Footer/>
         </div>
       </main>
     </>

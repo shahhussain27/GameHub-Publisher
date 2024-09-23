@@ -13,15 +13,26 @@ export default function SigninWithPassword() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    signIn("credentials", {
+    const result = await signIn("credentials", {
       email,
       password,
+      redirect: false,
     });
+
+    setLoading(false);
+
+    if (result?.error) {
+      console.error(result.error);
+      setError("Invalid email or password. Please try again.");
+    } else {
+      console.log("Sign-in successful!", result);
+    }
   };
 
   useEffect(() => {
@@ -32,6 +43,13 @@ export default function SigninWithPassword() {
 
   return (
     <form>
+      {error && (
+        <>
+          <div className="flex justify-center items-center">
+            <h3 className="text-rose-500">{error}</h3>
+          </div>
+        </>
+      )}
       <div className="mb-4">
         <label
           htmlFor="email"

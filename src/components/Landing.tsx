@@ -67,9 +67,7 @@ const Landing = () => {
           )}
         </div>
       </div>
-      <footer className="text-center p-4 text-sm text-gray-500">
-        © 2024 GameHub, Inc. All rights reserved.
-      </footer>
+      
     </div>
   );
 };
