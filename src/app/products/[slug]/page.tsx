@@ -1,10 +1,13 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import Carousel from "@/components/Products/Product/Story/StoryCarousel";
 import Details from "@/components/Products/Product/Details/Details";
 
-const Page  = ({ params }: { params: { slug: string } }) => {
+const Page = ({ params }: any) => {
+  const [product, setProduct] = useState(null);
+  //${params.slug}
   return (
     <DefaultLayout>
       <Breadcrumb pageName={`Product Name`} />
@@ -23,4 +26,4 @@ const Page  = ({ params }: { params: { slug: string } }) => {
   );
 };
 
-export default Page ;
+export default Page;

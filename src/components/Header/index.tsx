@@ -15,12 +15,28 @@ const Header = () => {
   const { data: session } = useSession();
   const pathname = usePathname();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  // console.log(pathname === "/dashboard", pathname)
+  const [scrolled, setScrolled] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     // dark:bg-[#020D1A]
-    //pending: if pathname === "dashboard" set bg-gradient-to-r from-[#020D1A]  to-[#05162a]
-    <header className="sticky top-0 z-999 flex w-full dark:bg-transperent">
+    <header
+      className={`sticky top-0 z-999 flex w-full  ${scrolled ? "bg-slate-100 shadow-2 dark:bg-gradient-to-r from-[#020D1A]  to-[#05162a]" : "bg-transperent"}`}
+    >
       <div className="flex flex-grow items-center justify-between px-4 py-2.5 md:px-5 2xl:px-10">
         <div className="flex items-center gap-2 sm:gap-4 ">
           {/* <!-- Hamburger Toggle BTN --> */}

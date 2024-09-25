@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import Card from "./Card";
 import { CiGrid41, CiCircleList } from "react-icons/ci";
+import { ProductContext } from "@/context/ProductContext";
 
 const Cards = () => {
+  const { product } = useContext(ProductContext);
   const [view, setView] = useState(true);
+
+  const renderedProducts = useMemo(() => {
+    return product.map((items: any) => (
+      <Card
+        key={items._id}
+        productName={items.productName}
+        view={view}
+        analyticsPage={`/products/analytics/${items._id}`}
+      />
+    ));
+  }, [product, view]);
+
   return (
     <>
       <section className="flex justify-end items-end gap-1 py-4 w-full text-2xl">
@@ -20,10 +34,19 @@ const Cards = () => {
           <CiCircleList />
         </button>
       </section>
+
+      {product.length <= 0 && (
+        <div className="flex justify-center items-center my-4">
+          <h2 className="font-bold text-5xl text-dark dark:text-white uppercase">
+            No Data
+          </h2>
+        </div>
+      )}
+
       <section
         className={`grid ${view ? "grid-cols-3 gap-y-10" : "grid-cols-1 gap-y-4"}   max-sm:grid-cols-1 max-md:grid-cols-2`}
       >
-        <Card view={view} analyticsPage={`/products/analytics/demo`} />
+        {renderedProducts}
       </section>
     </>
   );

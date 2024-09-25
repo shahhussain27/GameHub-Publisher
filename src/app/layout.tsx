@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import Loader from "@/components/common/Loader";
 import Header from "@/components/Header";
 import { SessionProvider } from "next-auth/react";
+import { ProductProvider } from "@/context/ProductContext";
 
 export default function RootLayout({
   children,
@@ -45,14 +46,20 @@ export default function RootLayout({
         />
         <link rel="icon" href="/favicon/favicon.ico" />
         <link rel="manifest" href="/favicon/site.webmanifest" />
-        <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+        <link
+          rel="mask-icon"
+          href="/favicon/safari-pinned-tab.svg"
+          color="#5bbad5"
+        />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </head>
       <body suppressHydrationWarning={true}>
         <SessionProvider session={session}>
-          {!loading && <Header />}
-          {loading ? <Loader /> : children}
+          <ProductProvider>
+            {!loading && <Header />}
+            {loading ? <Loader /> : children}
+          </ProductProvider>
         </SessionProvider>
       </body>
     </html>

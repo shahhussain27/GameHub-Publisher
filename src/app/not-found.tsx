@@ -9,7 +9,7 @@ const NotFound = () => {
         <h1>404 - Page Not Found</h1>
         <p>Sorry, the page you&apos;re looking for doesn&apos;t exist.</p>
         <Link href="/">
-          <button className="btn-primary py-1.5">
+          <button className="btn-primary py-2.5">
             Go back home
           </button>
         </Link>

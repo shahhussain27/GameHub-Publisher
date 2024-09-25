@@ -14,7 +14,7 @@ interface Credentials {
   password: string;
 }
 
-const handler = NextAuth({
+export const authOptions  = NextAuth({
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID as string,
@@ -74,4 +74,4 @@ const handler = NextAuth({
   //   },
 });
 
-export { handler as GET, handler as POST };
+export { authOptions  as GET, authOptions  as POST };

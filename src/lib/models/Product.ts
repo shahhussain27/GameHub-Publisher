@@ -2,33 +2,25 @@ import mongoose from "mongoose";
 
 const ProductSchema = new mongoose.Schema(
   {
-    productSmallImage: {
+    userEmail: {
       type: String,
-      required: false,
-    },
-    productMediumImage: {
-      type: String,
-      required: false,
-    },
-    productlargeImage: {
-      type: String,
-      required: false,
-    },
-    productPoster: {
-      type: String,
-      required: false,
-    },
-    productFile: {
-      type: String,
+      ref: "UserDev",
       required: true,
     },
+    productImage: {
+      type: String,
+      required: false,
+      default: null,
+    },
+
     productName: {
       type: String,
       required: true,
     },
     productPrice: {
-      type: String,
-      required: true,
+      type: Number,
+      required: false,
+      default: 0,
     },
     productPublisher: {
       type: String,
@@ -40,15 +32,43 @@ const ProductSchema = new mongoose.Schema(
     },
     productPlatform: {
       type: String,
-      required: true,
+      required: false,
+      default: "Windows",
     },
     productGameEngine: {
       type: String,
-      required: true,
+      required: false,
+      default: undefined,
+    },
+    productPoster: {
+      type: String,
+      required: false,
+      default: undefined,
     },
     productTitle: {
       type: String,
-      required: true,
+      required: false,
+      default: undefined,
+    },
+    productFile: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    productCarouselImages: {
+      type: Array,
+      required: false,
+      default: null,
+    },
+    storyHeading: {
+      type: String,
+      required: false,
+      default: undefined,
+    },
+    storyContext: {
+      type: String,
+      required: false,
+      default: undefined,
     },
   },
   { timestamps: true }
