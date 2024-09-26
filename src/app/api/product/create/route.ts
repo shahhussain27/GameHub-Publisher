@@ -1,6 +1,6 @@
 import type { NextApiResponse, NextApiRequest } from "next";
 import { getServerSession } from "next-auth/next";
-import { handler } from "../../auth/[...nextauth]/route";
+import { GET as handler } from "../../auth/[...nextauth]/route";
 import { connectToDB } from "@/lib/mongoDB/mongoose";
 import Product from "@/lib/models/Product";
 
