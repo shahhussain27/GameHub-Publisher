@@ -1,6 +1,23 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Model } from "mongoose";
 
-const ProductSchema = new mongoose.Schema(
+interface IProduct extends Document {
+  userEmail: string;
+  productImage?: string | null;
+  productName: string;
+  productPrice?: number;
+  productPublisher: string;
+  productDeveloper: string;
+  productPlatform?: string;
+  productGameEngine?: string;
+  productPoster?: string;
+  productTitle?: string;
+  productFile?: string | null;
+  productCarouselImages?: string[] | null;
+  storyHeading?: string;
+  storyContext?: string;
+}
+
+const ProductSchema = new mongoose.Schema<IProduct>(
   {
     userEmail: {
       type: String,
@@ -12,7 +29,6 @@ const ProductSchema = new mongoose.Schema(
       required: false,
       default: null,
     },
-
     productName: {
       type: String,
       required: true,
@@ -56,7 +72,7 @@ const ProductSchema = new mongoose.Schema(
       default: null,
     },
     productCarouselImages: {
-      type: Array,
+      type: [String],
       required: false,
       default: null,
     },
@@ -74,6 +90,6 @@ const ProductSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Product =
-  mongoose.models.Product || mongoose.model("Product", ProductSchema);
+const Product: Model<IProduct> =
+  mongoose.models.Product || mongoose.model<IProduct>("Product", ProductSchema);
 export default Product;
