@@ -13,27 +13,27 @@ const Details = () => {
           <table className="w-full">
             <tr className="flex justify-between items-center font-medium py-2 border-b border-slate-700">
               <td className="">Price</td>
-              <td className="text-white">₹0</td>
+              <td className="text-dark dark:text-white">₹0</td>
             </tr>
             <tr className="flex justify-between items-center font-medium py-2 border-b border-slate-700">
               <td className="">Discount's</td>
-              <td className="text-white">None</td>
+              <td className="text-dark dark:text-white">None</td>
             </tr>
             <tr className="flex justify-between items-center font-medium py-2 border-b border-slate-700">
               <td className="">Developer</td>
-              <td className="text-white">GameHub</td>
+              <td className="text-dark dark:text-white">GameHub</td>
             </tr>
             <tr className="flex justify-between items-center font-medium py-2 border-b border-slate-700">
               <td className="">Publisher</td>
-              <td className="text-white">GameHub</td>
+              <td className="text-dark dark:text-white">GameHub</td>
             </tr>
             <tr className="flex justify-between items-center font-medium py-2 border-b border-slate-700">
               <td className="">Publish Date</td>
-              <td className="text-white">08/20/24</td>
+              <td className="text-dark dark:text-white">08/20/24</td>
             </tr>
             <tr className="flex justify-between items-center font-medium py-2 border-b border-slate-700">
               <td className="">Platform</td>
-              <td className="text-white">Windows</td>
+              <td className="text-dark dark:text-white">Windows</td>
             </tr>
           </table>
         </div>

@@ -1,6 +1,6 @@
 import type { NextApiResponse, NextApiRequest } from "next";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import { handler } from "../../auth/[...nextauth]/route";
 import { connectToDB } from "@/lib/mongoDB/mongoose";
 import Product from "@/lib/models/Product";
 
@@ -15,7 +15,7 @@ export async function POST(req: any, res: NextApiResponse) {
   try {
     const { productName } = await req.json();
 
-    const session: UserSession | null = await getServerSession(authOptions);
+    const session: UserSession | null = await getServerSession(handler);
 
     if (!session) {
       return new Response(JSON.stringify({ message: "Unauthorized" }), {
@@ -42,14 +42,17 @@ export async function POST(req: any, res: NextApiResponse) {
       productPoster: null,
       productTitle: undefined,
       productFile: null,
-      productCarouselImages: [], 
+      productCarouselImages: [],
       storyHeading: undefined,
       storyContext: undefined,
     });
 
-    return new Response(JSON.stringify({ message: "product created", data: product }), {
-      status: 200,
-    });
+    return new Response(
+      JSON.stringify({ message: "product created", data: product }),
+      {
+        status: 200,
+      }
+    );
   } catch (error) {
     console.error(error);
     return new Response(JSON.stringify({ message: "Internal Server Error" }), {

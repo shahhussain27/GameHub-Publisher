@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import { handler } from "../../auth/[...nextauth]/route";
 import { connectToDB } from "@/lib/mongoDB/mongoose";
 import Product from "@/lib/models/Product";
 
@@ -13,7 +13,7 @@ interface UserSession {
 
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const session: UserSession | null = await getServerSession(authOptions);
+    const session: UserSession | null = await getServerSession(handler);
 
     if (!session) {
       return new Response(JSON.stringify({ message: "Unauthorized" }), {

@@ -1,4 +1,5 @@
 import NextAuth, { User } from "next-auth";
+import { AuthOptions } from "next-auth";
 import { compare } from "bcrypt";
 import { connectToDB } from "@/lib/mongoDB/mongoose";
 import DevUser from "@/lib/models/DevUser";
@@ -9,12 +10,7 @@ import FacebookProvider from "next-auth/providers/facebook";
 import TwitchProvider from "next-auth/providers/twitch";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-interface Credentials {
-  email: string;
-  password: string;
-}
-
-export const authOptions  = NextAuth({
+export const handler = NextAuth({
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID as string,
@@ -66,12 +62,6 @@ export const authOptions  = NextAuth({
       },
     }),
   ],
-  //   callbacks: {
-  //     async session({ session, token }) {
-  //       session.user.id = token.sub;
-  //       return session;
-  //     },
-  //   },
 });
 
-export { authOptions  as GET, authOptions  as POST };
+export { handler as GET, handler as POST };
