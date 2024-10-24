@@ -3,6 +3,7 @@ import mongoose, { Document, Model } from "mongoose";
 interface IProduct extends Document {
   userEmail: string;
   productImage?: string | null;
+  productImageKey?: string;
   productName: string;
   productPrice?: number;
   productPublisher: string;

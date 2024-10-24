@@ -1,19 +1,35 @@
-import React, { useState, useContext, useMemo } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import Card from "./Card";
 import { CiGrid41, CiCircleList } from "react-icons/ci";
 import { ProductContext } from "@/context/ProductContext";
+import { setCookie, getCookie } from "cookies-next";
 
 const Cards = () => {
   const { product } = useContext(ProductContext);
-  const [view, setView] = useState(true);
+  const [view, setView] = useState(() => {
+    const initialView = getCookie("View");
+    return initialView !== undefined ? JSON.parse(initialView as string) : true;
+  });
+
+  useEffect(() => {
+    setCookie("View", view);
+  }, [view]);
 
   const renderedProducts = useMemo(() => {
     return product.map((items: any) => (
       <Card
         key={items._id}
+        productImage={items.productImage}
+        productImageKey={items.productImageKey}
         productName={items.productName}
+        productPrice={items.productPrice}
+        productPublisher={items.productPublisher}
+        productDeveloper={items.productDeveloper}
+        productPlatform={items.productPlatform}
         view={view}
+        id={items._id}
         analyticsPage={`/products/analytics/${items._id}`}
+        settingsPage={`/products/settings/${items._id}`}
       />
     ));
   }, [product, view]);

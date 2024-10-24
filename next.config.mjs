@@ -26,6 +26,13 @@ const nextConfig = {
         port: "",
         pathname: "/platform/profilepic/**",
       },
+      {
+        protocol: "https",
+        hostname: "gamehub-publisher.s3.ap-south-1.amazonaws.com",
+        port: "",
+        pathname: "/**",
+      },
+      
     ],
   },
 };

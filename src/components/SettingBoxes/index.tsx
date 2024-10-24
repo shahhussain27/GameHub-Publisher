@@ -338,7 +338,7 @@ const SettingBoxes = () => {
                   <div className="h-14 w-14 rounded-full">
                     <>
                       <Image
-                        src="/images/user/user-03.png"
+                        src="/assets/profile/profile-1.svg"
                         width={55}
                         height={55}
                         alt="User"
@@ -357,7 +357,36 @@ const SettingBoxes = () => {
                   id="FileUpload"
                   className="relative mb-5.5 block w-full cursor-pointer appearance-none rounded-xl border border-dashed border-gray-4 bg-gray-2 px-4 py-4 hover:border-primary dark:border-dark-3 dark:bg-dark-2 dark:hover:border-primary sm:py-7.5"
                 >
-                  <div className="">1</div>
+                  <div className="grid grid-cols-3 justify-center items-center gap-y-4">
+                    <Image
+                      src="/assets/profile/profile-1.svg"
+                      width={55}
+                      height={55}
+                      alt="User"
+                      className="overflow-hidden rounded-full"
+                    />
+                    <Image
+                      src="/assets/profile/profile-2.svg"
+                      width={55}
+                      height={55}
+                      alt="User"
+                      className="overflow-hidden rounded-full"
+                    />
+                    <Image
+                      src="/assets/profile/profile-3.svg"
+                      width={55}
+                      height={55}
+                      alt="User"
+                      className="overflow-hidden rounded-full"
+                    />
+                    <Image
+                      src="/assets/profile/profile-4.svg"
+                      width={55}
+                      height={55}
+                      alt="User"
+                      className="overflow-hidden rounded-full"
+                    />
+                  </div>
                 </div>
 
                 <div className="flex justify-end gap-3">

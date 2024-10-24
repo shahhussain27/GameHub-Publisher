@@ -9,12 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.654.0",
+    "@aws-sdk/client-s3": "^3.677.0",
+    "@aws-sdk/s3-request-presigner": "^3.677.0",
+    "@nextui-org/input": "^2.2.5",
     "@nextui-org/modal": "^2.0.41",
+    "@nextui-org/tabs": "^2.0.37",
     "@react-three/drei": "^9.111.5",
     "@react-three/fiber": "^8.17.6",
     "apexcharts": "^3.45.2",
     "bcrypt": "^5.1.1",
+    "cookies-next": "^4.3.0",
     "flatpickr": "^4.6.13",
     "jsvectormap": "^1.6.0",
     "mongoose": "^8.6.1",
@@ -29,7 +33,9 @@
     "react-multi-carousel": "^2.8.5",
     "react-quill": "^2.0.0",
     "react-select": "^5.8.0",
+    "react-slick": "^0.30.2",
     "react-table": "^7.8.0",
+    "slick-carousel": "^1.8.1",
     "three": "^0.168.0"
   },
   "devDependencies": {

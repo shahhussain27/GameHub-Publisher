@@ -35,6 +35,7 @@ const FloatingBubble: React.FC<{ position: THREE.Vector3 }> = ({
         transparent
         opacity={2}
         roughness={0}
+        
       />
     </mesh>
   );

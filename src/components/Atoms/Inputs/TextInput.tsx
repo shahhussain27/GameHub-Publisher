@@ -7,7 +7,7 @@ const TextInput = ({
   defaultText,
   onChange,
 }: any) => {
-  const [text, setText] = useState("");
+  const [text, setText] = useState(defaultText || "");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
@@ -17,15 +17,15 @@ const TextInput = ({
   };
   return (
     <div>
-      <label className="mb-3 block text-body-sm font-medium text-dark dark:text-white">
+      <label className="mb-1 ml-1 block text-body-sm font-medium text-dark dark:text-white">
         {labelText}
       </label>
       <input
         type="text"
         placeholder={placeholderText}
-        value={!defaultText ? text : defaultText}
+        value={text}
         onChange={handleChange}
-        className="w-full rounded-[7px] border-[1.5px] border-primary bg-transparent px-5.5 py-3 text-dark outline-none transition focus:border-primary/90 active:border-primary/70 disabled:cursor-default dark:border-primary  dark:text-white dark:focus:border-primary"
+        className="w-full rounded-[7px] border-[1.5px] border-primary bg-transparent px-3 py-2 text-dark outline-none transition focus:border-primary/90 active:border-primary/70 disabled:cursor-default dark:border-primary  dark:text-white dark:focus:border-primary"
       />
     </div>
   );
