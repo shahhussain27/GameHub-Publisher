@@ -11,7 +11,7 @@ const Loader = () => {
         width={150}
         className="mix-blend-lighten"
       />
-      <h1 className="text-2xl font-extrabold uppercase text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-slate-700">beta 0.2.0</h1>
+      <h1 className="text-2xl font-extrabold uppercase text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-slate-700">beta 1.3.0</h1>
     </div>
   );
 };

@@ -40,6 +40,15 @@ const ProductProvider = ({ children }: any) => {
     productPublisher,
     productDeveloper,
     productPlatform,
+    frontPoster,
+    frontPosterKey,
+    backPoster,
+    backPosterKey,
+    title,
+    productCarouselImages,
+    deleteIndex,
+    productFile,
+    productFileURLKey,
   }: any) => {
     setLoadig(true);
     const productData = new FormData();
@@ -51,6 +60,26 @@ const ProductProvider = ({ children }: any) => {
     productData.append("productPublisher", productPublisher);
     productData.append("productDeveloper", productDeveloper);
     productData.append("productPlatform", productPlatform);
+    productData.append("frontPoster", frontPoster);
+    productData.append("frontPosterKey", frontPosterKey);
+    productData.append("backPoster", backPoster);
+    productData.append("backPosterKey", backPosterKey);
+    productData.append("title", title);
+    // productData.append("productCarouselImages", productCarouselImages);
+    productData.append("deleteIndex", deleteIndex);
+    productData.append("productFile", productFile);
+    productData.append("productFileURLKey", productFileURLKey);
+
+    if (productCarouselImages && productCarouselImages.length > 0) {
+      for (const file of productCarouselImages) {
+        if (file instanceof File) {
+          productData.append("productCarouselImages", file);
+        }
+      }
+    } else {
+      productData.append("productCarouselImages", null);
+    }
+
     try {
       const response = await fetch("/api/product/update", {
         method: "PUT",

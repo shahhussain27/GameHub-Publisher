@@ -17,7 +17,7 @@ const DeleteProduct = ({ id }: any) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const deleteProduct = async ({ onClose }: any) => {
+  const deleteProduct = async () => {
     setLoading(true);
     try {
       const response = await fetch("/api/product/delete", {
@@ -38,8 +38,7 @@ const DeleteProduct = ({ id }: any) => {
       setProduct((prevProducts: any[]) =>
         prevProducts.filter((p) => p._id !== id)
       );
-      onClose();
-      router.push("/");
+      router.push("/dashboard");
     } catch (error) {
       console.error(error);
       setLoading(false);
@@ -80,11 +79,11 @@ const DeleteProduct = ({ id }: any) => {
                 </button>
                 <button
                   className="btn-danger px-8 py-2.5 "
-                  onClick={() => deleteProduct(onClose)}
+                  onClick={deleteProduct}
                 >
                   {loading ? (
                     <Image
-                      className="w-6 h-6 dark:invert"
+                      className="w-6 h-6"
                       src={"/assets/loading.svg"}
                       alt="Logo"
                       width={100}

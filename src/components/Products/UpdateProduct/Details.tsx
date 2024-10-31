@@ -70,14 +70,27 @@ const Details = ({
             )}
             {!productImage && (
               <>
-                <Image
-                  src={"/assets/upload_image.svg"}
-                  alt="uplaod"
-                  height={200}
-                  width={200}
-                  className="dark:invert dark:opacity-45"
-                />
-                <h2>Choose Image 350 x 224px</h2>
+                {imagePre && (
+                  <Image
+                    src={imagePre}
+                    alt="uplaod"
+                    height={224}
+                    width={350}
+                    className="w-full h-[224px] rounded-lg object-cover hover:opacity-85"
+                  />
+                )}
+                {!imagePre && (
+                  <>
+                    <Image
+                      src={"/assets/upload_image.svg"}
+                      alt="uplaod"
+                      height={200}
+                      width={200}
+                      className="dark:invert dark:opacity-45"
+                    />
+                    <h2>Choose Image 350 x 224px</h2>
+                  </>
+                )}
               </>
             )}
           </label>

@@ -10,10 +10,17 @@ interface IProduct extends Document {
   productDeveloper: string;
   productPlatform?: string;
   productGameEngine?: string;
-  productPoster?: string;
+  productFrontPoster?: string | null;
+  productFrontPosterKey?: string;
+  productBackPoster?: string | null;
+  productBackPosterKey?: string;
   productTitle?: string;
-  productFile?: string | null;
-  productCarouselImages?: string[] | null;
+  productFileURL?: string | null;
+  productFileURLKey?: string | null;
+  productFileName?: string | null;
+  productFileSize?: Number | null;
+  productFileType?: string | null;
+  productCarouselImages?: object[] | null;
   storyHeading?: string;
   storyContext?: string;
 }
@@ -26,6 +33,11 @@ const ProductSchema = new mongoose.Schema<IProduct>(
       required: true,
     },
     productImage: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    productImageKey: {
       type: String,
       required: false,
       default: null,
@@ -57,35 +69,70 @@ const ProductSchema = new mongoose.Schema<IProduct>(
       required: false,
       default: undefined,
     },
-    productPoster: {
+    productFrontPoster: {
       type: String,
       required: false,
-      default: undefined,
+      default: null,
+    },
+    productFrontPosterKey: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    productBackPoster: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    productBackPosterKey: {
+      type: String,
+      required: false,
+      default: null,
     },
     productTitle: {
       type: String,
       required: false,
-      default: undefined,
+      default: null,
     },
-    productFile: {
+    productFileURL: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    productFileURLKey: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    productFileName: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    productFileSize: {
+      type: Number,
+      required: false,
+      default: null,
+    },
+    productFileType: {
       type: String,
       required: false,
       default: null,
     },
     productCarouselImages: {
-      type: [String],
+      type: [Object],
       required: false,
       default: null,
     },
     storyHeading: {
       type: String,
       required: false,
-      default: undefined,
+      default: null,
     },
     storyContext: {
       type: String,
       required: false,
-      default: undefined,
+      default: null,
     },
   },
   { timestamps: true }
