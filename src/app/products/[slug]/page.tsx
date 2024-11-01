@@ -34,7 +34,9 @@ const Page = ({ params }: any) => {
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName={`${product.productName || "Product Name"} `} />
+      <Breadcrumb
+        pageName={`${(product as any).productName || "Product Name"} `}
+      />
       <div className="flex flex-col gap-16">
         <section className="flex items-start justify-center gap-4">
           <Details product={product} />
