@@ -34,6 +34,7 @@ const Story = ({ id, productCarouselImages }: any) => {
         setContentPre((prev: any) =>
           prev.filter((_: any, idx: number) => !deleteIndex.includes(idx))
         );
+        setDeleteIndex([]);
       }
     } else {
       alert("No file selected to save.");

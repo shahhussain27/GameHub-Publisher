@@ -13,11 +13,15 @@ const UploadFile = ({
   productFileType,
 }: any) => {
   const { loading, updateProduct } = useContext(ProductContext);
-
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState({
+    name: productFileName || null,
+    size: productFileSize || null,
+    type: productFileType || null,
+  });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files[0];
+
     if (selectedFile) {
       setFile(selectedFile);
     }
@@ -29,38 +33,28 @@ const UploadFile = ({
 
   // pending: fix file data change after changing fetching file in client-side
   const fileDisplay =
-    productFileURL || file ? (
+    file?.name !== null ? (
       <div className="flex gap-4 py-2.5 pr-6">
-        {productFileType ? (
-          <>
-            {productFileType === "application/x-zip-compressed" ? (
-              <BsFileEarmarkZip className="text-4xl" />
-            ) : (
-              <BsFiletypeExe className="text-4xl" />
-            )}
-          </>
+        {file?.type === "application/x-zip-compressed" ? (
+          <BsFileEarmarkZip className="text-4xl" />
         ) : (
-          <>
-            {file?.type === "application/x-zip-compressed" ? (
-              <BsFileEarmarkZip className="text-4xl" />
-            ) : (
-              <BsFiletypeExe className="text-4xl" />
-            )}
-          </>
+          <BsFiletypeExe className="text-4xl" />
         )}
 
         <div className="tracking-wider leading-tight">
-          <h2 className="font-bold">{productFileName || file?.name}</h2>
+          <h2 className="font-bold">{file?.name}</h2>
           <h3 className="font-light">
-            {productFileSize ? (
-              <>{(productFileSize / (1024 * 1024)).toFixed(2)} MB</>
-            ) : (
-              <>{(file?.size / (1024 * 1024)).toFixed(2)} MB</>
-            )}
+            {(file?.size / (1024 * 1024)).toFixed(2)} MB
           </h3>
         </div>
         <button
-          onClick={() => setFile(null)}
+          onClick={() =>
+            setFile({
+              name: null,
+              size: null,
+              type: null,
+            })
+          }
           className="btn-primary py-2.5 px-2 scale-75"
         >
           Update

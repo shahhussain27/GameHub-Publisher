@@ -135,13 +135,14 @@ export async function PUT(req: any, res: NextApiResponse) {
     ) {
       let carouselImages = product.productCarouselImages || [];
 
-      for (let i = 0; i < carouselImages.length; i++) {
-        console.log(i)
+      for (let i = 0; i <= carouselImages.length; i++) {
+        // pending: for loop not run properly
         if (deleteIndex.includes(i)) {
           await s3.send(
             new DeleteObjectCommand({
               Bucket,
-              Key: product.productCarouselImages[i].fileUrlKey,
+              Key: (product.productCarouselImages[i] as { fileUrlKey: string })
+                .fileUrlKey,
             })
           );
 
