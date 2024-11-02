@@ -30,10 +30,7 @@ const s3 = new S3Client({
 const uploadFile = async (file: any) => {
   const Body = (await file.arrayBuffer()) as Buffer;
   s3.send(new PutObjectCommand({ Bucket, Key: file.name, Body }));
-
-  const command = new GetObjectCommand({ Bucket, Key: file.name });
-  const src = await getSignedUrl(s3, command, { expiresIn: 3600 });
-
+  const src = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${file.name.replace(/ /g, "+")}`;
   return src;
 };
 
