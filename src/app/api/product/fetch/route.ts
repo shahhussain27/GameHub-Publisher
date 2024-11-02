@@ -22,7 +22,10 @@ export async function GET(req: any, res: NextApiResponse) {
 
     await connectToDB();
 
-    let products = await Product.find({ userEmail: session.user.email });
+    let products = await Product.find({ userEmail: session.user.email }).sort({
+      createdAt: -1,
+    });
+
     if (!products) {
       return new Response(JSON.stringify({ message: "Not Found" }), {
         status: 404,

@@ -24,7 +24,6 @@ const s3 = new S3Client({
 export async function DELETE(req: any, res: NextApiResponse) {
   try {
     const { id } = await req.json();
-
     const session: UserSession | null = await getServerSession(handler);
 
     if (!session) {
@@ -33,13 +32,48 @@ export async function DELETE(req: any, res: NextApiResponse) {
       });
     }
     await connectToDB();
-    const deletedProduct = await Product.findByIdAndDelete(id);
 
-    if (!deletedProduct) {
+    const product = await Product.findById(id);
+
+    if (!product) {
       return new Response(JSON.stringify({ message: "Not Found" }), {
         status: 404,
       });
     }
+
+    if (product.productImageKey) {
+      await s3.send(
+        new DeleteObjectCommand({ Bucket, Key: product.productImageKey })
+      );
+    }
+    if (product.productFrontPoster) {
+      await s3.send(
+        new DeleteObjectCommand({ Bucket, Key: product.productFrontPoster })
+      );
+    }
+    if (product.productBackPoster) {
+      await s3.send(
+        new DeleteObjectCommand({ Bucket, Key: product.productBackPoster })
+      );
+    }
+    if (product.productFileURLKey) {
+      await s3.send(
+        new DeleteObjectCommand({ Bucket, Key: product.productFileURLKey })
+      );
+    }
+
+    if (product.productCarouselImages.length > 0) {
+      for (let i = 0; i <= product.productCarouselImages.length - 1; i++) {
+        await s3.send(
+          new DeleteObjectCommand({
+            Bucket,
+            Key: (product.productCarouselImages[i] as any).fileUrlKey,
+          })
+        );
+      }
+    }
+
+    await product.deleteOne();
 
     return new Response(JSON.stringify({ message: "product deleted" }), {
       status: 200,

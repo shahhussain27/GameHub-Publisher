@@ -25,7 +25,7 @@ const CreateProduct = ({ onClose }: any) => {
       }
 
       const json = await response.json();
-      setProduct((pre: any) => [...pre, json.data]);
+      setProduct((pre: any) => [json.data, ...pre]);
       setLoading(false);
       onClose();
     } catch (error) {
