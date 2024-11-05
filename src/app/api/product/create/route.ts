@@ -51,6 +51,8 @@ export async function POST(req: any, res: NextApiResponse) {
       productFileSize: null,
       productFileType: null,
       productCarouselImages: [],
+      productRatings: [],
+      productDownloads: [],
       storyHeading: null,
       storyContext: null,
     });

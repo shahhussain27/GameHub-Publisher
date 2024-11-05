@@ -21,6 +21,8 @@ interface IProduct extends Document {
   productFileSize?: Number | null;
   productFileType?: string | null;
   productCarouselImages?: object[] | null;
+  productRatings?: object[] | null;
+  productDownloads?: object[] | null; //{userEmail,userDownloandDate,userDonwloadLocation,userPayment}
   storyHeading?: string;
   storyContext?: string;
 }
@@ -120,6 +122,16 @@ const ProductSchema = new mongoose.Schema<IProduct>(
       default: null,
     },
     productCarouselImages: {
+      type: [Object],
+      required: false,
+      default: null,
+    },
+    productRatings: {
+      type: [Object],
+      required: false,
+      default: null,
+    },
+    productDownloads: {
       type: [Object],
       required: false,
       default: null,

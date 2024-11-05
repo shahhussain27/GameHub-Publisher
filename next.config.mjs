@@ -1,4 +1,6 @@
+import pkg from "./package.json" assert { type: "json" };
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -32,8 +34,10 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
-      
     ],
+  },
+  env: {
+    NEXT_PUBLIC_APP_VERSION: pkg.version,
   },
 };
 
