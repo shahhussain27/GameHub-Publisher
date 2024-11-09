@@ -19,6 +19,7 @@ const Card = ({
   productPublisher,
   productDeveloper,
   productPlatform,
+  productDiscount,
   view,
   id,
   analyticsPage,
@@ -58,6 +59,7 @@ const Card = ({
                 productPublisher={productPublisher}
                 productDeveloper={productDeveloper}
                 productPlatform={productPlatform}
+                productDiscount={productDiscount}
               />
             </>
           )}
@@ -66,17 +68,17 @@ const Card = ({
       <div
         className={`${view ? "flex flex-col w-[350px] h-[430px] rounded-[10px] dark:bg-gray-dark max-sm:w-full" : "flex w-full h-20 justify-between items-center px-2 rounded dark:bg-[#020D1A] border border-primary/[.07] dark:border-slate-600 hover:hover:bg-primary/[.07] dark:hover:bg-slate-600"}   bg-white shadow-1 text-black dark:text-white  cursor-pointer`}
       >
-        <div className={`${view ? "w-auto h-auto" : "flex gap-4 w-25 h-auto"}`}>
+        <div className={`${view ? "w-auto h-auto" : "flex gap-4 "}`}>
           <Image
             src={productImage || CardImage}
             alt="Card"
-            height={view ? 70 : 100}
+            height={view ? 70 : 70}
             width={view ? 350 : 100}
-            className={`${view ? "h-[224px] rounded-t-[10px] object-cover" : "h-[64px] rounded"}`}
+            className={`${view ? "h-[224px] rounded-t-[10px] object-cover" : "w-[100px] h-[70px] rounded object-cover"}`}
             loading="lazy"
           />
           <h2
-            className={`${!view ? "font-bold text-xl max-sm:text-sm" : "hidden"}`}
+            className={`${!view ? "font-bold text-xl text-nowrap max-sm:text-sm" : "hidden"}`}
           >
             {productName}
           </h2>

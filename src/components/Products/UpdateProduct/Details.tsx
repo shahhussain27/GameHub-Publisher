@@ -3,6 +3,7 @@ import { ModalBody, ModalFooter } from "@nextui-org/modal";
 import TextInput from "@/components/Atoms/Inputs/TextInput";
 import Image from "next/image";
 import { ProductContext } from "@/context/ProductContext";
+import { MdError, MdCheckCircle } from "react-icons/md";
 
 const Details = ({
   onClose,
@@ -14,16 +15,18 @@ const Details = ({
   productPublisher,
   productDeveloper,
   productPlatform,
+  productDiscount,
 }: any) => {
-  const { loading, updateProduct } = useContext(ProductContext);
+  const { loading, response, updateProduct } = useContext(ProductContext);
 
   const [image, setImage] = useState(null);
-  const [imagePre, setImagePre] = useState(null);
+  const [imagePre, setImagePre] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [publisher, setPublisher] = useState("");
   const [developer, setDeveloper] = useState("");
   const [platform, setPlatform] = useState("");
+  const [discount, setDiscount] = useState("");
 
   const onSubmit = () => {
     updateProduct({
@@ -36,6 +39,7 @@ const Details = ({
       productPublisher: publisher,
       productDeveloper: developer,
       productPlatform: platform,
+      productDiscount: discount,
     });
   };
 
@@ -98,7 +102,7 @@ const Details = ({
           <input
             type="file"
             id="productImage"
-            accept="image/png, image/jpeg"
+            accept="image/png, image/jpeg, image/webp"
             className="hidden"
             onChange={handleImageChange}
           />
@@ -115,7 +119,7 @@ const Details = ({
             <TextInput
               labelText="Product Price"
               placeholderText="Product Price"
-              defaultText={productPrice}
+              defaultText={`${productPrice.toLocaleString() || 0}`}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setPrice(e.target.value)
               }
@@ -144,10 +148,38 @@ const Details = ({
                 setPlatform(e.target.value)
               }
             />
+            <TextInput
+              labelText="Discount"
+              placeholderText="Discount"
+              defaultText={`${productDiscount || 0}%`}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setDiscount(e.target.value)
+              }
+            />
           </div>
         </div>
       </ModalBody>
       <ModalFooter>
+        {response.isResponse && (
+          <>
+            {!response.success ? (
+              <div className="flex justify-center items-center gap-2 text-rose-600">
+                <MdError className="text-2xl" />{" "}
+                <h2>
+                  {response.status} | {response.statusText}
+                </h2>
+              </div>
+            ) : (
+              <div className="flex justify-center items-center gap-2 text-green-600">
+                <MdCheckCircle className="text-2xl" />{" "}
+                <h2>
+                  {response.status} | {response.statusText}
+                </h2>
+              </div>
+            )}
+          </>
+        )}
+
         <button onClick={onClose} className="btn-danger py-2.5">
           Close
         </button>

@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import Image from "next/image";
 import { BsFileEarmarkZip, BsFiletypeExe } from "react-icons/bs";
-
 import { ProductContext } from "@/context/ProductContext";
+import { MdError, MdCheckCircle } from "react-icons/md";
 
 const UploadFile = ({
   id,
@@ -12,7 +12,7 @@ const UploadFile = ({
   productFileSize,
   productFileType,
 }: any) => {
-  const { loading, updateProduct } = useContext(ProductContext);
+  const { loading, response, updateProduct } = useContext(ProductContext);
   const [file, setFile] = useState({
     name: productFileName || null,
     size: productFileSize || null,
@@ -114,6 +114,25 @@ const UploadFile = ({
           </div>
         </div>
         <div className="flex justify-end mt-6">
+          {response.isResponse && (
+            <>
+              {!response.success ? (
+                <div className="flex justify-center items-center gap-2 text-rose-600 mx-4">
+                  <MdError className="text-2xl" />{" "}
+                  <h2>
+                    {response.status} | {response.statusText}
+                  </h2>
+                </div>
+              ) : (
+                <div className="flex justify-center items-center gap-2 text-green-600 mx-4">
+                  <MdCheckCircle className="text-2xl" />{" "}
+                  <h2>
+                    {response.status} | {response.statusText}
+                  </h2>
+                </div>
+              )}
+            </>
+          )}
           <button onClick={handleSave} className="btn-primary py-1.5 px-3">
             {loading ? (
               <Image

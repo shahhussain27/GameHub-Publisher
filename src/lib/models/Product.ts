@@ -6,6 +6,8 @@ interface IProduct extends Document {
   productImageKey?: string;
   productName: string;
   productPrice?: number;
+  productDiscount?: number;
+  productOffers?: object[] | null;
   productPublisher: string;
   productDeveloper: string;
   productPlatform?: string;
@@ -21,7 +23,7 @@ interface IProduct extends Document {
   productFileSize?: Number | null;
   productFileType?: string | null;
   productCarouselImages?: object[] | null;
-  productRatings?: object[] | null;
+  productRatings?: object[] | null; // {userEmail, userRating}
   productDownloads?: object[] | null; //{userEmail,userDownloandDate,userDonwloadLocation,userPayment}
   storyHeading?: string;
   storyContext?: string;
@@ -53,6 +55,16 @@ const ProductSchema = new mongoose.Schema<IProduct>(
       required: false,
       default: 0,
     },
+    productDiscount: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    productOffers: {
+      type: [Object],
+      required: false,
+      default: [],
+    },
     productPublisher: {
       type: String,
       required: true,
@@ -69,7 +81,7 @@ const ProductSchema = new mongoose.Schema<IProduct>(
     productGameEngine: {
       type: String,
       required: false,
-      default: undefined,
+      default: null,
     },
     productFrontPoster: {
       type: String,
@@ -124,17 +136,17 @@ const ProductSchema = new mongoose.Schema<IProduct>(
     productCarouselImages: {
       type: [Object],
       required: false,
-      default: null,
+      default: [],
     },
     productRatings: {
       type: [Object],
       required: false,
-      default: null,
+      default: [],
     },
     productDownloads: {
       type: [Object],
       required: false,
-      default: null,
+      default: [],
     },
     storyHeading: {
       type: String,

@@ -45,6 +45,7 @@ export async function PUT(req: any, res: NextApiResponse) {
     const productPublisher = productData.get("productPublisher");
     const productDeveloper = productData.get("productDeveloper");
     const productPlatform = productData.get("productPlatform");
+    const productDiscount = productData.get("productDiscount");
     const frontPoster = productData.get("frontPoster") as File | null;
     const frontPosterKey = productData.get("frontPosterKey");
     const backPoster = productData.get("backPoster") as File | null;
@@ -101,6 +102,9 @@ export async function PUT(req: any, res: NextApiResponse) {
     }
     if (productPlatform && productPlatform !== "undefined") {
       updateData.productPlatform = productPlatform;
+    }
+    if (productDiscount && productDiscount !== "undefined") {
+      updateData.productDiscount = productDiscount;
     }
     if (frontPoster && frontPoster instanceof File) {
       if (frontPosterKey) {

@@ -6,6 +6,12 @@ const ProductContext = createContext(null);
 
 const ProductProvider = ({ children }: any) => {
   const [loading, setLoadig] = useState(false);
+  const [response, setResponse] = useState({
+    isResponse: false,
+    status: null,
+    success: false,
+    statusText: null,
+  });
   const [product, setProduct] = useState([]);
 
   const router = useRouter();
@@ -40,6 +46,7 @@ const ProductProvider = ({ children }: any) => {
     productPublisher,
     productDeveloper,
     productPlatform,
+    productDiscount,
     frontPoster,
     frontPosterKey,
     backPoster,
@@ -60,6 +67,7 @@ const ProductProvider = ({ children }: any) => {
     productData.append("productPublisher", productPublisher);
     productData.append("productDeveloper", productDeveloper);
     productData.append("productPlatform", productPlatform);
+    productData.append("productDiscount", productDiscount);
     productData.append("frontPoster", frontPoster);
     productData.append("frontPosterKey", frontPosterKey);
     productData.append("backPoster", backPoster);
@@ -88,6 +96,13 @@ const ProductProvider = ({ children }: any) => {
 
       if (!response.ok) {
         setLoadig(false);
+        setResponse({
+          isResponse: true,
+
+          status: response.status,
+          success: false,
+          statusText: response.statusText,
+        });
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
@@ -97,6 +112,12 @@ const ProductProvider = ({ children }: any) => {
           product._id === id ? { ...product, ...json.data } : product
         )
       );
+      setResponse({
+        isResponse: true,
+        status: response.status,
+        success: true,
+        statusText: response.statusText,
+      });
       onClose();
       setLoadig(false);
     } catch (error) {
@@ -112,6 +133,7 @@ const ProductProvider = ({ children }: any) => {
     <ProductContext.Provider
       value={{
         loading,
+        response,
         product,
         setProduct,
         updateProduct,

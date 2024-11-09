@@ -10,11 +10,18 @@ import {
 } from "@nextui-org/modal";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { MdError, MdCheckCircle } from "react-icons/md";
 
 const DeleteProduct = ({ id }: any) => {
   const { setProduct } = useContext(ProductContext);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState({
+    isResponse: false,
+    status: null,
+    success: false,
+    statusText: null,
+  });
   const router = useRouter();
 
   const deleteProduct = async () => {
@@ -30,6 +37,12 @@ const DeleteProduct = ({ id }: any) => {
 
       if (!response.ok) {
         setLoading(false);
+        setResponse({
+          isResponse: true,
+          status: response.status,
+          success: false,
+          statusText: response.statusText,
+        });
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
@@ -74,6 +87,18 @@ const DeleteProduct = ({ id }: any) => {
                 </h2>
               </ModalBody>
               <ModalFooter>
+                {response.isResponse && (
+                  <>
+                    {!response.success && (
+                      <div className="flex justify-center items-center gap-2 text-rose-600 mx-4">
+                        <MdError className="text-2xl" />{" "}
+                        <h2>
+                          {response.status} | {response.statusText}
+                        </h2>
+                      </div>
+                    )}
+                  </>
+                )}
                 <button className="btn-primary px-8 py-2.5 " onClick={onClose}>
                   Cancel
                 </button>

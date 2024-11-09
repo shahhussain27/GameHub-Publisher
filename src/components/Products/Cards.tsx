@@ -26,6 +26,7 @@ const Cards = () => {
         productPublisher={items.productPublisher}
         productDeveloper={items.productDeveloper}
         productPlatform={items.productPlatform}
+        productDiscount={items.productDiscount}
         view={view}
         id={items._id}
         analyticsPage={`/products/analytics/${items._id}`}
