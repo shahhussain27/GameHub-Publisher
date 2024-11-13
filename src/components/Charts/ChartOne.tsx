@@ -3,15 +3,31 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 import DefaultSelectOption from "@/components/SelectOption/DefaultSelectOption";
 
-const ChartOne: React.FC = () => {
+const ChartOne = ({ productDownloads = [] }: any) => {
+  const groupedData = productDownloads.reduce((acc: any, item: any) => {
+    const date = new Date(item.userDownloandDate);
+    const month = date.toLocaleString("default", { month: "short" });
+    const yearMonth = `${month} ${date.getFullYear()}`;
+
+    if (!acc[yearMonth]) {
+      acc[yearMonth] = 0;
+    }
+
+    acc[yearMonth] += item.userPayment;
+    return acc;
+  }, {});
+
+  const categories = Object.keys(groupedData);
+  const seriesData = categories.map((category) => groupedData[category]);
+
   const series = [
     {
       name: "Received Amount",
-      data: [0, 20, 35, 45, 35, 55, 65, 50, 65, 75, 60, 75],
+      data: seriesData,
     },
     {
       name: "Due Amount",
-      data: [15, 9, 17, 32, 25, 68, 80, 68, 84, 94, 74, 62],
+      data: new Array(categories.length).fill(0),
     },
   ];
 
@@ -97,20 +113,7 @@ const ChartOne: React.FC = () => {
     },
     xaxis: {
       type: "category",
-      categories: [
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-      ],
+      categories: categories,
       axisBorder: {
         show: false,
       },
@@ -157,13 +160,16 @@ const ChartOne: React.FC = () => {
         <div className="border-stroke dark:border-dark-3 xsm:w-1/2 xsm:border-r">
           <p className="font-medium">Received Amount</p>
           <h4 className="mt-1 text-xl font-bold text-dark dark:text-white">
-            $45,070.00
+            ₹
+            {productDownloads
+              .reduce((acc: any, item: any) => acc + item.userPayment, 0)
+              .toLocaleString()}
           </h4>
         </div>
         <div className="xsm:w-1/2">
           <p className="font-medium">Due Amount</p>
           <h4 className="mt-1 text-xl font-bold text-dark dark:text-white">
-            $32,400.00
+            ₹0.00
           </h4>
         </div>
       </div>

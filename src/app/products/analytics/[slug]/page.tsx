@@ -1,12 +1,38 @@
 "use client";
+import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import ChartOne from "@/components/Charts/ChartOne";
 import ChartThree from "@/components/Charts/ChartThree";
 import ChartTwo from "@/components/Charts/ChartTwo";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
-import MapOne from "@/components/Maps/MapOne";
 
 export default function Page({ params }: { params: { slug: string } }) {
+  const [product, setProduct] = useState({});
+
+  const getProductById = async () => {
+    try {
+      const response = await fetch(`/api/product/${params.slug}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const json = await response.json();
+      setProduct(json.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getProductById();
+  }, [params.slug]);
+
   return (
     <DefaultLayout>
       <div className="mx-auto w-full max-w-[1080px]">
@@ -21,7 +47,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         </section>
         <section className="grid gap-4 mt-8 w-full ">
           <section className="w-full ">
-            <ChartOne />
+            <ChartOne productDownloads={(product as any).productDownloads} />
           </section>
 
           <section className="grid grid-cols-2 gap-4 w-full max-sm:grid-cols-1">

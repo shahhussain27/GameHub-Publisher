@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ProductContext } from "@/context/ProductContext";
 import { dataStats } from "@/types/dataStats";
 
-const DataStatsOne: React.FC<dataStats> = () => {
+const DataStatsOne = ({ totalDownloads, totalAmount }: any) => {
   const { product } = useContext(ProductContext);
   const dataStatsList = [
     {
@@ -28,7 +28,7 @@ const DataStatsOne: React.FC<dataStats> = () => {
       ),
       color: "#3FD97F",
       title: "Total Downloads",
-      value: "0",
+      value: totalDownloads,
       growthRate: 0.0,
     },
     {
@@ -50,7 +50,7 @@ const DataStatsOne: React.FC<dataStats> = () => {
       ),
       color: "#FF9C55",
       title: "Total Income",
-      value: "₹0",
+      value: `₹${totalAmount.toLocaleString()}`,
       growthRate: 0.0,
     },
     {

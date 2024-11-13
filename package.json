@@ -1,6 +1,6 @@
 {
   "name": "gamehub-publisher",
-  "version": "1.3.2",
+  "version": "1.7.2",
   "private": true,
   "scripts": {
     "dev": "next dev",

@@ -1,11 +1,30 @@
 "use client";
 import jsVectorMap from "jsvectormap";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../../js/us-aea-en";
 import "jsvectormap/dist/maps/world.js";
 
-const MapOne: React.FC = () => {
+const MapOne = ({ productDownloads = [] }: any) => {
+  const [mapData, setMapData] = useState<any>({});
+
   useEffect(() => {
+    if (productDownloads.length > 0) {
+      const data = productDownloads.reduce((acc: any, download: any) => {
+        const countryCode = download.userDonwloadLocation.countryCode;
+        if (countryCode) {
+          acc[countryCode] = "1-100";
+        }
+        return acc;
+      }, {});
+
+      setMapData(data);
+      console.log("Dynamic Map Data: ", data);
+    }
+  }, [productDownloads]);
+
+  useEffect(() => {
+    if (Object.keys(mapData).length === 0) return;
+
     const mapElement = document.getElementById("mapOne");
 
     if (!mapElement) {
@@ -17,7 +36,6 @@ const MapOne: React.FC = () => {
       selector: "#mapOne",
       map: "world",
       zoomButtons: false,
-
       regionStyle: {
         initial: {
           fill: "#C8D0D8",
@@ -37,7 +55,6 @@ const MapOne: React.FC = () => {
           cursor: "pointer",
         },
       },
-
       labels: {
         regions: {
           render(code: string) {
@@ -45,15 +62,13 @@ const MapOne: React.FC = () => {
           },
         },
       },
-
       onRegionTooltipShow({ event, tooltip, code }: any) {
         tooltip.text(
           `<h5>${tooltip.text()}</h5>` +
-            `<p class="text-xs">Downloads: ${code}</p>`,
+            `<p class="text-xs">Downloads: ${mapData[code] || "0"}</p>`,
           true
         );
       },
-
       series: {
         regions: [
           {
@@ -69,13 +84,7 @@ const MapOne: React.FC = () => {
               "100K-1M": "#1d4ed8",
               "1M-50M": "#1e40af",
             },
-            values: {
-              CN: "1-100",
-              MX: "100-1K",
-              IN: "1M-50M",
-              RU: "10K-100K",
-              IR: "1K-10K",
-            },
+            values: mapData,
           },
         ],
       },
@@ -88,14 +97,20 @@ const MapOne: React.FC = () => {
         console.error("Vector map instance not found during cleanup");
       }
     };
-  }, []);
+  }, [mapData]);
 
   return (
-    <div className="col-span-12 rounded-[10px] bg-white p-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-7">
-      <div className="flex gap-4 mb-7 text-xs font-medium text-dark dark:text-white"></div>
-      <div className="h-[422px]">
-        <div id="mapOne" className="mapOne map-btn"></div>
-      </div>
+    <div className="col-span-12 rounded-[10px]  bg-white p-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-7">
+      {productDownloads.length === 0 ? (
+        <h2 className="font-extrabold text-4xl text-center ">No Data</h2>
+      ) : (
+        <>
+          <div className="flex gap-4 mb-7 text-xs font-medium text-dark dark:text-white"></div>
+          <div className="h-[422px]">
+            <div id="mapOne" className="mapOne map-btn"></div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

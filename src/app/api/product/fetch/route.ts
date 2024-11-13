@@ -22,6 +22,9 @@ export async function GET(req: any, res: NextApiResponse) {
 
     await connectToDB();
 
+    let paymentSum = 0;
+    let downloadCount = 0;
+
     let products = await Product.find({ userEmail: session.user.email }).sort({
       createdAt: -1,
     });
@@ -31,9 +34,26 @@ export async function GET(req: any, res: NextApiResponse) {
         status: 404,
       });
     }
-    return new Response(JSON.stringify({ data: products }), {
-      status: 200,
+
+    products.forEach((product) => {
+      if (product.productTotalDownloads) {
+        downloadCount += Number(product.productTotalDownloads);
+      }
+      if (product.productTotalRevenueAmount) {
+        paymentSum += Number(product.productTotalRevenueAmount);
+      }
     });
+
+    return new Response(
+      JSON.stringify({
+        data: products,
+        totalDownloads: downloadCount,
+        totalRevenueAmount: paymentSum,
+      }),
+      {
+        status: 200,
+      }
+    );
   } catch (error) {
     console.error(error);
     return new Response(JSON.stringify({ message: "Internal Server Error" }), {

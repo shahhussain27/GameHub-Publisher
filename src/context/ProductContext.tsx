@@ -13,6 +13,8 @@ const ProductProvider = ({ children }: any) => {
     statusText: null,
   });
   const [product, setProduct] = useState([]);
+  const [totalDownloads, setTotalDownloads] = useState(0);
+  const [totalPayment, setTotalPayment] = useState(0);
 
   const router = useRouter();
 
@@ -31,6 +33,8 @@ const ProductProvider = ({ children }: any) => {
 
       const json = await response.json();
       setProduct(json.data);
+      setTotalDownloads(json.totalDownloads);
+      setTotalPayment(json.totalRevenueAmount);
     } catch (error) {
       console.error(error);
     }
@@ -129,12 +133,15 @@ const ProductProvider = ({ children }: any) => {
   useEffect(() => {
     fetchProduct();
   }, []);
+
   return (
     <ProductContext.Provider
       value={{
         loading,
         response,
         product,
+        totalDownloads,
+        totalPayment,
         setProduct,
         updateProduct,
       }}

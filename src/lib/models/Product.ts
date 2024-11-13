@@ -23,8 +23,10 @@ interface IProduct extends Document {
   productFileSize?: Number | null;
   productFileType?: string | null;
   productCarouselImages?: object[] | null;
-  productRatings?: object[] | null; // {userEmail, userRating}
-  productDownloads?: object[] | null; //{userEmail,userDownloandDate,userDonwloadLocation,userPayment}
+  productRatings?: object[] | null;
+  productDownloads?: object[] | null;
+  productTotalDownloads?: Number;
+  productTotalRevenueAmount?: Number;
   storyHeading?: string;
   storyContext?: string;
 }
@@ -33,7 +35,7 @@ const ProductSchema = new mongoose.Schema<IProduct>(
   {
     userEmail: {
       type: String,
-      ref: "UserDev",
+      ref: "DevUser",
       required: true,
     },
     productImage: {
@@ -147,6 +149,16 @@ const ProductSchema = new mongoose.Schema<IProduct>(
       type: [Object],
       required: false,
       default: [],
+    },
+    productTotalDownloads: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    productTotalRevenueAmount: {
+      type: Number,
+      required: false,
+      default: 0,
     },
     storyHeading: {
       type: String,

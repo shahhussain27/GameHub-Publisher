@@ -52,7 +52,10 @@ const Sidebar = () => {
         },
         ...product.map((item: any) => ({
           icon: "",
-          label: item.productName,
+          label:
+            item.productName.length > 20
+              ? `${item.productName.substring(0, item.productName.length - 8)}...`
+              : item.productName,
           route: `/products/${item._id}`,
           children: [
             {
@@ -63,7 +66,7 @@ const Sidebar = () => {
             {
               icon: <CiGlobe />,
               label: "World Analytics",
-              route: `/products/analytics/world_analytics/${item._id}`,
+              route: `/products/analytics/world_analtytics/${item._id}`,
             },
           ], // dropdown
         })),

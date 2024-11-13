@@ -85,9 +85,11 @@ const Card = ({
         </div>
         <div className="flex flex-col gap-6 px-6 py-4">
           <h2
-            className={`${view ? "flex justify-between items-center font-bold text-xl" : "hidden"}`}
+            className={`${view ? "flex justify-between items-center font-bold text-xl " : "hidden"}`}
           >
-            {productName}
+            {productName.length > 20
+              ? `${productName.substring(0, productName.length - 5)}...`
+              : productName}
             <span
               onClick={onOpen}
               className="py-1.5 px-2 hover:bg-primary/[.07] dark:hover:bg-slate-700 rounded"

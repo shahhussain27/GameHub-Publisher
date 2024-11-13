@@ -101,7 +101,7 @@ const Posters = ({
             <input
               type="file"
               id="frontPoster"
-              accept="image/png, image/jpeg"
+              accept="image/png, image/jpeg, image/webp"
               className="hidden"
               onChange={handleFrontImageChange}
             />
@@ -149,7 +149,7 @@ const Posters = ({
               <input
                 type="file"
                 id="backPoster"
-                accept="image/png, image/jpeg"
+                accept="image/png, image/jpeg, image/webp"
                 className="hidden"
                 onChange={handleBackImageChange}
               />
