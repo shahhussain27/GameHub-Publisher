@@ -4,6 +4,7 @@ import TextInput from "@/components/Atoms/Inputs/TextInput";
 import Image from "next/image";
 import { ProductContext } from "@/context/ProductContext";
 import { MdError, MdCheckCircle } from "react-icons/md";
+import SelectInput from "@/components/Atoms/Inputs/SelectInput";
 
 const Details = ({
   onClose,
@@ -140,14 +141,16 @@ const Details = ({
                 setPublisher(e.target.value)
               }
             />
-            <TextInput
-              labelText="Platform"
-              placeholderText="Platform"
-              defaultText={productPlatform}
+
+            <SelectInput
+              labelText="Choose a platform"
+              options={["Windows", "Mobile"]}
+              defaultOption={productPlatform}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setPlatform(e.target.value)
               }
             />
+
             <TextInput
               labelText="Discount"
               placeholderText="Discount"
@@ -166,7 +169,8 @@ const Details = ({
               <div className="flex justify-center items-center gap-2 text-rose-600">
                 <MdError className="text-2xl" />{" "}
                 <h2>
-                  {response.status} | {response.statusText}
+                  {response.status} |{" "}
+                  {response.statusText || "Unknown Error Occur"}
                 </h2>
               </div>
             ) : (

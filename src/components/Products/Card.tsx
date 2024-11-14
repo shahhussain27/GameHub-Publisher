@@ -80,7 +80,9 @@ const Card = ({
           <h2
             className={`${!view ? "font-bold text-xl text-nowrap max-sm:text-sm" : "hidden"}`}
           >
-            {productName}
+            {productName.length > 20
+              ? `${productName.substring(0, productName.length - 10)}...`
+              : productName}
           </h2>
         </div>
         <div className="flex flex-col gap-6 px-6 py-4">

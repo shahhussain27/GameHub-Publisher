@@ -190,6 +190,7 @@ const Posters = ({
           )}
           <button
             className="btn-primary py-1.5 px-3"
+            disabled={!(frontPoster || backPoster || title.length > 0)}
             onClick={handleUpdateChanages}
           >
             {loading ? (

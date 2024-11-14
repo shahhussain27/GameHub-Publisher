@@ -133,7 +133,11 @@ const UploadFile = ({
               )}
             </>
           )}
-          <button onClick={handleSave} className="btn-primary py-1.5 px-3">
+          <button
+            disabled={!file.name}
+            onClick={handleSave}
+            className="btn-primary py-1.5 px-3"
+          >
             {loading ? (
               <Image
                 className="w-6 h-6 dark:invert"

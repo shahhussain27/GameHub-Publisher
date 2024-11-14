@@ -5,7 +5,6 @@ import { ProductContext } from "@/context/ProductContext";
 import { IoCheckmark } from "react-icons/io5";
 import { MdError, MdCheckCircle } from "react-icons/md";
 
-
 const Story = ({ id, productCarouselImages }: any) => {
   const { loading, response, updateProduct } = useContext(ProductContext);
   const [content, setContent] = useState([]);
@@ -124,26 +123,30 @@ const Story = ({ id, productCarouselImages }: any) => {
         </div>
       </div>
       <div className="flex justify-end mt-6">
-      {response.isResponse && (
-            <>
-              {!response.success ? (
-                <div className="flex justify-center items-center gap-2 text-rose-600 mx-4">
-                  <MdError className="text-2xl" />{" "}
-                  <h2>
-                    {response.status} | {response.statusText}
-                  </h2>
-                </div>
-              ) : (
-                <div className="flex justify-center items-center gap-2 text-green-600 mx-4">
-                  <MdCheckCircle className="text-2xl" />{" "}
-                  <h2>
-                    {response.status} | {response.statusText}
-                  </h2>
-                </div>
-              )}
-            </>
-          )}
-        <button onClick={handleSave} className="btn-primary py-1.5 px-3">
+        {response.isResponse && (
+          <>
+            {!response.success ? (
+              <div className="flex justify-center items-center gap-2 text-rose-600 mx-4">
+                <MdError className="text-2xl" />{" "}
+                <h2>
+                  {response.status} | {response.statusText}
+                </h2>
+              </div>
+            ) : (
+              <div className="flex justify-center items-center gap-2 text-green-600 mx-4">
+                <MdCheckCircle className="text-2xl" />{" "}
+                <h2>
+                  {response.status} | {response.statusText}
+                </h2>
+              </div>
+            )}
+          </>
+        )}
+        <button
+          disabled={content.length === 0}
+          onClick={handleSave}
+          className="btn-primary py-1.5 px-3"
+        >
           {loading ? (
             <Image
               className="w-6 h-6 dark:invert"

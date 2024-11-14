@@ -72,7 +72,9 @@ const Header = () => {
                 </h2>
               </div>
 
-              {pathname !== "/dashboard" && (
+              {pathname === "/" ||
+              pathname === "/auth/signin" ||
+              pathname === "/auth/signup" || pathname === "/support" ? (
                 <nav>
                   <ul className="flex flex-col justify-center items-start gap-4 text-xl">
                     <Link href={"/support"} className="cursor-pointer">
@@ -81,8 +83,9 @@ const Header = () => {
                     <li className="cursor-pointer">Documentation</li>
                   </ul>
                 </nav>
+              ) : (
+                <Sidebar />
               )}
-              {pathname === "/dashboard" && <Sidebar />}
             </aside>
           </Drawer>
           {/* <!-- Hamburger Toggle BTN --> */}

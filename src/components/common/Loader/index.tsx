@@ -6,6 +6,7 @@ const Loader = () => {
       <Image
         src={"/assets/loading.gif"}
         alt="loading..."
+        unoptimized
         height={150}
         width={150}
         className="mix-blend-lighten"

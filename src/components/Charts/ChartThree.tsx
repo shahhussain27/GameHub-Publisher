@@ -4,7 +4,7 @@ import ReactApexChart from "react-apexcharts";
 import DefaultSelectOption from "@/components/SelectOption/DefaultSelectOption";
 
 const ChartThree: React.FC = () => {
-  const series = [65, 34, 12, 56];
+  const series = [0];
 
   const options: ApexOptions = {
     chart: {
@@ -28,7 +28,8 @@ const ChartThree: React.FC = () => {
             total: {
               show: true,
               showAlways: true,
-              label: "Visitors",
+              label: "Coming Soon!",
+              // label: "Visitors",
               fontSize: "16px",
               fontWeight: "400",
             },
@@ -90,7 +91,7 @@ const ChartThree: React.FC = () => {
               <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-blue"></span>
               <p className="flex w-full justify-between text-body-sm font-medium text-dark dark:text-dark-6">
                 <span> Desktop </span>
-                <span> 65% </span>
+                <span> 0% </span>
               </p>
             </div>
           </div>
@@ -99,7 +100,7 @@ const ChartThree: React.FC = () => {
               <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-blue-light"></span>
               <p className="flex w-full justify-between text-body-sm font-medium text-dark dark:text-dark-6">
                 <span> Tablet </span>
-                <span> 34% </span>
+                <span> 0% </span>
               </p>
             </div>
           </div>
@@ -108,7 +109,7 @@ const ChartThree: React.FC = () => {
               <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-blue-light-2"></span>
               <p className="flex w-full justify-between text-body-sm font-medium text-dark dark:text-dark-6">
                 <span> Mobile </span>
-                <span> 45% </span>
+                <span> 0% </span>
               </p>
             </div>
           </div>
@@ -117,7 +118,7 @@ const ChartThree: React.FC = () => {
               <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-blue-light-3"></span>
               <p className="flex w-full justify-between text-body-sm font-medium text-dark dark:text-dark-6">
                 <span> Unknown </span>
-                <span> 12% </span>
+                <span> 0% </span>
               </p>
             </div>
           </div>

@@ -6,7 +6,7 @@ const ChartFive: React.FC = () => {
   const series = [
     {
       name: "Visitors",
-      data: [168, 385, 201, 298, 187, 195, 291],
+      data: [0],
     },
   ];
 
