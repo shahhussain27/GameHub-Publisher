@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Input } from "@nextui-org/input";
+import { Select, SelectItem } from "@nextui-org/select";
 import Image from "next/image";
 import { ProductContext } from "@/context/ProductContext";
 import { MdError, MdCheckCircle } from "react-icons/md";
+import { genres, features } from "@/lib/utils/gameData";
 
 const Posters = ({
   id,
@@ -11,6 +13,8 @@ const Posters = ({
   productBackPoster,
   productBackPosterKey,
   productTitle,
+  productGenre,
+  productFeature,
 }: any) => {
   const { loading, response, updateProduct } = useContext(ProductContext);
   const [frontPoster, setFrontPoster] = useState(null);
@@ -20,6 +24,9 @@ const Posters = ({
   const [backPosterPre, setBackPosterPre] = useState(null);
 
   const [title, setTitle] = useState("");
+
+  const [genre, setGenre] = useState([]);
+  const [feature, setFeature] = useState([]);
 
   const handleFrontImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -53,6 +60,8 @@ const Posters = ({
       backPoster: backPoster,
       backPosterKey: productBackPosterKey,
       title: title,
+      genre: genre,
+      feature: feature,
     });
   };
 
@@ -168,6 +177,46 @@ const Posters = ({
             />
           </div>
         </div>
+        <div className="">
+          <label className="font-bold text-lg">Genre</label>
+          <Select
+            placeholder="Select an genre"
+            selectionMode="multiple"
+            className=""
+            classNames={{ listbox: "bg-black" }}
+            onSelectionChange={(keys) => setGenre(Array.from(keys))}
+            selectedKeys={
+              productGenre?.[0]?.length > 0
+                ? productGenre[0]?.[0]?.split(",")
+                : []
+            }
+          >
+            {genres.map((genre) => (
+              <SelectItem key={genre.key} value={genre.key}>
+                {genre.label}
+              </SelectItem>
+            ))}
+          </Select>
+          <label className="font-bold text-lg">Features</label>
+          <Select
+            placeholder="Select an features"
+            selectionMode="multiple"
+            className=""
+            classNames={{ listbox: "bg-black" }}
+            onSelectionChange={(keys) => setFeature(Array.from(keys))}
+            selectedKeys={
+              productFeature?.[0]?.length > 0
+                ? productFeature[0]?.[0]?.split(",")
+                : []
+            }
+          >
+            {features.map((features) => (
+              <SelectItem key={features.key} value={features.key}>
+                {features.label}
+              </SelectItem>
+            ))}
+          </Select>
+        </div>
         <div className="flex justify-end mt-6">
           {response.isResponse && (
             <>
@@ -190,7 +239,15 @@ const Posters = ({
           )}
           <button
             className="btn-primary py-1.5 px-3"
-            disabled={!(frontPoster || backPoster || title.length > 0)}
+            disabled={
+              !(
+                frontPoster ||
+                backPoster ||
+                title.length > 0 ||
+                genre.length > 0 ||
+                feature.length > 0
+              )
+            }
             onClick={handleUpdateChanages}
           >
             {loading ? (

@@ -50,23 +50,25 @@ const Page = ({ params }: any) => {
               "flex justify-center p-6 mt-4 rounded-lg bg-primary/[.07] dark:bg-white/10 overflow-scroll",
           }}
         >
-          <Tab key="product1" title="Product Poster">
+          <Tab key="poster" title="Product Poster">
             <Posters
               productFrontPoster={(product as any).productFrontPoster}
               productFrontPosterKey={(product as any).productFrontPosterKey}
               productBackPoster={(product as any).productBackPoster}
               productBackPosterKey={(product as any).productBackPosterKey}
               productTitle={(product as any).productTitle}
+              productGenre={(product as any).genres}
+              productFeature={(product as any).features}
               id={(product as any)._id}
             />
           </Tab>
-          <Tab key="product2" title="Story Overview">
+          <Tab key="story" title="Story Overview">
             <Story
               id={(product as any)._id}
               productCarouselImages={(product as any).productCarouselImages}
             />
           </Tab>
-          <Tab key="product3" title="Upload File">
+          <Tab key="file" title="Upload File">
             <UploadFile
               id={(product as any)._id}
               productFileURL={(product as any).productFileURL}
@@ -76,7 +78,7 @@ const Page = ({ params }: any) => {
               productFileType={(product as any).productFileType}
             />
           </Tab>
-          <Tab key="product4" title="Delete Product">
+          <Tab key="delete" title="Delete Product">
             <DeleteProduct id={params.slug} />
           </Tab>
         </Tabs>

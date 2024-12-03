@@ -9,7 +9,7 @@ import {
   GetObjectCommand,
   DeleteObjectCommand,
 } from "@aws-sdk/client-s3";
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { update } from "three/examples/jsm/libs/tween.module.js";
 
 interface UserSession {
   user: {
@@ -51,6 +51,8 @@ export async function PUT(req: any, res: NextApiResponse) {
     const backPoster = productData.get("backPoster") as File | null;
     const backPosterKey = productData.get("backPosterKey");
     const title = productData.get("title");
+    const genre = productData.get("genre");
+    const feature = productData.get("feature");
     const productCarouselImages = productData.getAll("productCarouselImages");
     const deleteIndex = productData.get("deleteIndex");
     const productFile = productData.get("productFile") as File | null;
@@ -127,6 +129,17 @@ export async function PUT(req: any, res: NextApiResponse) {
     }
     if (title && title !== "undefined") {
       updateData.productTitle = title;
+    }
+
+    if (genre.length > 0) {
+      // let genreArray = genre.split(",");
+
+      updateData.genres = genre;
+    }
+
+    if (feature.length > 0) {
+      // let featureArray = feature.split(",");
+      updateData.features = feature;
     }
 
     if (

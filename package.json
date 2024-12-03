@@ -13,6 +13,7 @@
     "@aws-sdk/s3-request-presigner": "^3.677.0",
     "@nextui-org/input": "^2.2.5",
     "@nextui-org/modal": "^2.0.41",
+    "@nextui-org/select": "^2.2.7",
     "@nextui-org/tabs": "^2.0.37",
     "@react-three/drei": "^9.111.5",
     "@react-three/fiber": "^8.17.6",

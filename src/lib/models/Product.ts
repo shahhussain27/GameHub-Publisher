@@ -17,6 +17,8 @@ interface IProduct extends Document {
   productBackPoster?: string | null;
   productBackPosterKey?: string;
   productTitle?: string;
+  genres?: [];
+  features?: [];
   productFileURL?: string | null;
   productFileURLKey?: string | null;
   productFileName?: string | null;
@@ -107,6 +109,16 @@ const ProductSchema = new mongoose.Schema<IProduct>(
     },
     productTitle: {
       type: String,
+      required: false,
+      default: null,
+    },
+    genres: {
+      type: [Array],
+      required: false,
+      default: null,
+    },
+    features: {
+      type: [Array],
       required: false,
       default: null,
     },

@@ -56,6 +56,8 @@ const ProductProvider = ({ children }: any) => {
     backPoster,
     backPosterKey,
     title,
+    genre,
+    feature,
     productCarouselImages,
     deleteIndex,
     productFile,
@@ -77,7 +79,8 @@ const ProductProvider = ({ children }: any) => {
     productData.append("backPoster", backPoster);
     productData.append("backPosterKey", backPosterKey);
     productData.append("title", title);
-    // productData.append("productCarouselImages", productCarouselImages);
+    productData.append("genre", genre);
+    productData.append("feature", feature);
     productData.append("deleteIndex", deleteIndex);
     productData.append("productFile", productFile);
     productData.append("productFileURLKey", productFileURLKey);
